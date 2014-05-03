@@ -26,6 +26,10 @@
             android:name="com.cs213.photoalbum.ViewAlbums"
             android:label="@string/title_activity_view_albums" >
         </activity>
+        <activity
+            android:name="com.cs213.photoalbum.SearchPhotos"
+            android:label="@string/title_activity_search_photos" >
+        </activity>
     </application>
 
 </manifest>
