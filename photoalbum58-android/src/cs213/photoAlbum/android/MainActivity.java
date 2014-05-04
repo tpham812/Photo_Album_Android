@@ -3,12 +3,17 @@ package cs213.photoAlbum.android;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -22,8 +27,39 @@ public class MainActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		populateList();
 	}
-
+	
+	private void populateList() {
+		
+		String[] list = {"Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Violet", "This", "Is", "Only", "A", "Test", "And", "It's", "Cool", "Who", "Are", "You", "Right", "Now", "Am", "I"};
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.color_list, list);
+		final ListView list2 = (ListView) findViewById(R.id.listView1);
+		list2.setAdapter(adapter);
+		list2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				Object o = list2.getItemAtPosition(position);
+				String s = (String)o;
+				if(s.equals("Red")) {
+					Intent myIntent = new Intent(MainActivity.this, SecondActivity.class);
+					startActivity(myIntent);
+				}
+			}
+		});
+		
+		list2.setOnItemLongClickListener(new OnItemLongClickListener() {
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long id) {
+				Object o = list2.getItemAtPosition(position);
+				String s = (String)o;
+				if(s.equals("Blue")) {
+					Intent myIntent = new Intent(MainActivity.this, SecondActivity.class);
+					startActivity(myIntent);
+				}
+				return true;
+			}
+		});
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
