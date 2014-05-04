@@ -1,0 +1,161 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cs213.photoAlbum.android.SearchPhotos"
+    tools:ignore="MergeRootFrame" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="203dp"
+        android:layout_x="0dp"
+        android:layout_y="120dp" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/tf1_1"
+                android:layout_marginLeft = "15dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/tf1_2"
+                android:layout_marginLeft = "55dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/tf2_1"
+                 android:layout_marginLeft = "15dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5" />
+
+            <EditText
+                android:id="@+id/tf2_2"
+                android:layout_marginLeft = "55dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/tf3_1"
+                android:layout_marginLeft = "15dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5" />
+
+            <EditText
+                android:id="@+id/tf3_2"
+                android:layout_marginLeft = "55dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/tf4_1"
+                android:layout_marginLeft = "15dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5" />
+
+            <EditText
+                android:id="@+id/tf4_2"
+                android:layout_marginLeft = "55dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/tf5_1"
+                android:layout_marginLeft = "15dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5" />
+
+            <EditText
+                android:id="@+id/tf5_2"
+                android:layout_marginLeft = "55dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="18dp"
+        android:layout_y="82dp"
+        android:text="Tag Type"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="207dp"
+        android:layout_y="80dp"
+        android:text="Tag Value"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/Search2"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="35dp"
+        android:layout_y="365dp"
+        android:text="Search" />
+
+    <Button
+        android:id="@+id/Cancel3"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="230dp"
+        android:layout_y="365dp"
+        android:text="Cancel" />
+
+</AbsoluteLayout>
