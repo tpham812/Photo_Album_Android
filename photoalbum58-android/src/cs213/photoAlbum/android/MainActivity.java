@@ -26,10 +26,12 @@ import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
 	
-	private ArrayAdapter<String> adapter; 
+	
+	private ArrayAdapter<String> adapter;
 	private Button search;
 	private Button create;
-	private ListView list;
+	public static ListView list;
+	public static boolean albumChange = false;
 	public static ViewContainer container;
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,10 @@ public class MainActivity extends ActionBarActivity {
 	public void onRestart() {
 		
 		super.onRestart();
-		populateList();
+		if(albumChange) {
+			populateList();
+			albumChange = false;
+		}
 	}
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
@@ -98,6 +103,9 @@ public class MainActivity extends ActionBarActivity {
 		super.onContextItemSelected(item);
 		if(item.getTitle() == "Edit") {
 			Intent i = new Intent(this, EditAlbum.class);
+			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
+			Object o = list.getItemAtPosition(adapterMenuInfo.position);
+			i.putExtra("Old_Album", (String)o);
 			startActivity(i);
 		}
 		else {

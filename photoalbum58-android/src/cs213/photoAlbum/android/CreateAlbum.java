@@ -30,18 +30,29 @@ public class CreateAlbum extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		buildAlertDialog();
 		setTitle("Edit Album");
 		setTitle("Edit Album");
 		tf   = (EditText)findViewById(R.id.TextField2);
 		create = (Button) findViewById(R.id.Create2);
 		create.setOnClickListener(new View.OnClickListener() {
-			
 			public void onClick(View v) {
-				ad.show();
+				String albumName = tf.getText().toString().trim();
+				if(albumName.equals("")) {
+					ad.setMessage("Did not specify  a name for album.");
+					ad.show();
+				}
+				if(MainActivity.container.isAlbumExist(albumName)) {
+					ad.setMessage("Album name already exists.");
+					ad.show();
+				}
+				else {
+					MainActivity.container.createAlbum(albumName);
+					MainActivity.albumChange = true;
+					finish();
+				}
 			}
 		});
-		buildAlertDialog();
-		
 		cancel = (Button) findViewById(R.id.Cancel2);
 		cancel.setOnClickListener(new View.OnClickListener() {
 			
@@ -50,17 +61,15 @@ public class CreateAlbum extends ActionBarActivity {
 			}
 		});
 	}
+	
 	@SuppressWarnings("deprecation")
 	public void buildAlertDialog() {
 		ad = new AlertDialog.Builder(this).create();
 		ad.setTitle("Error!");
-		ad.setMessage("Album name already exists.");
 		ad.setButton("Close", new DialogInterface.OnClickListener() {
-			
 			public void onClick(DialogInterface dialog, int which) {
 				tf.setText("");
 				ad.cancel();
-				
 			}
 		});
 	}
