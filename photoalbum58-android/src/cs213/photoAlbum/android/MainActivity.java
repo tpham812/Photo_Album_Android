@@ -1,9 +1,9 @@
 package cs213.photoAlbum.android;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
+import cs213.photoAlbum.simpleview.ViewContainer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
@@ -26,7 +26,15 @@ public class MainActivity extends ActionBarActivity {
 	
 	public static List <String> list = new ArrayList<String>();
 	
+	private ViewContainer container;
+	
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		container = ViewContainer.getInstance();
+		if(container == null) {
+			ViewContainer.init(getApplicationContext().getFilesDir().getAbsolutePath());
+		}
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 

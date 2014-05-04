@@ -1,9 +1,0 @@
-
-syntax: regexp
-^photoalbum58-android/bin$
-syntax: regexp
-^appcompat_v7/bin$
-syntax: regexp
-^photoalbum58-android/gen$
-syntax: regexp
-^appcompat_v7/gen$
