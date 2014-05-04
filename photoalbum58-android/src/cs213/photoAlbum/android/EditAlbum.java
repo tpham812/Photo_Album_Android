@@ -36,7 +36,21 @@ public class EditAlbum extends ActionBarActivity {
 		apply.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				ad.show();
+				String albumName = tf.getText().toString().trim();
+				if(albumName.equals("")) {
+					ad.setMessage("Did not specify  a name for album.");
+					ad.show();
+				}
+				if(MainActivity.container.isAlbumExist(albumName)) {
+					ad.setMessage("Album name already exists.");
+					ad.show();
+				}
+				else {
+					
+					MainActivity.container.editAlbum(albumName, getIntent().getExtras().getString("Old_Album"));
+					MainActivity.albumChange = true;
+					finish();
+				}
 			}
 		});
 		buildAlertDialog();
