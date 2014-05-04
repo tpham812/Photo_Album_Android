@@ -27,7 +27,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="122dp"
+        android:layout_x="132dp"
         android:layout_y="18dp"
         android:text="Albums"
         android:textAppearance="?android:attr/textAppearanceLarge" />
