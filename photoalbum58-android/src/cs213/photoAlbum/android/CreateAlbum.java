@@ -15,25 +15,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.os.Build;
 
-public class EditAlbum extends ActionBarActivity {
+public class CreateAlbum extends ActionBarActivity {
 
+	private Button create;
 	private AlertDialog ad;
-	private Button apply;
 	private Button cancel;
 	private EditText tf;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_edit_album);
+		setContentView(R.layout.activity_create_album);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		setTitle("Edit Album");
-		tf   = (EditText)findViewById(R.id.TextField);
-		apply = (Button) findViewById(R.id.Apply);
-		apply.setOnClickListener(new View.OnClickListener() {
+		setTitle("Edit Album");
+		tf   = (EditText)findViewById(R.id.TextField2);
+		create = (Button) findViewById(R.id.Create2);
+		create.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
 				ad.show();
@@ -41,7 +42,7 @@ public class EditAlbum extends ActionBarActivity {
 		});
 		buildAlertDialog();
 		
-		cancel = (Button) findViewById(R.id.Cancel);
+		cancel = (Button) findViewById(R.id.Cancel2);
 		cancel.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -49,7 +50,6 @@ public class EditAlbum extends ActionBarActivity {
 			}
 		});
 	}
-
 	@SuppressWarnings("deprecation")
 	public void buildAlertDialog() {
 		ad = new AlertDialog.Builder(this).create();
@@ -64,11 +64,12 @@ public class EditAlbum extends ActionBarActivity {
 			}
 		});
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.edit_album, menu);
+		getMenuInflater().inflate(R.menu.create_album, menu);
 		return true;
 	}
 
@@ -95,7 +96,7 @@ public class EditAlbum extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_edit_album,
+			View rootView = inflater.inflate(R.layout.fragment_create_album,
 					container, false);
 			return rootView;
 		}
