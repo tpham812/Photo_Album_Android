@@ -1,0 +1,5 @@
+
+syntax: regexp
+^photoalbum58-android/bin$
+syntax: regexp
+^appcompat_v7/bin$
