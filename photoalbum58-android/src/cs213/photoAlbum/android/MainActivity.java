@@ -19,7 +19,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -69,6 +71,14 @@ public class MainActivity extends ActionBarActivity {
 		list = (ListView) findViewById(R.id.listView1);
 		adapter = new ArrayAdapter<String>(this, R.layout.album_list, albumList);
 		list.setAdapter(adapter); 
+		list.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent i = new Intent(MainActivity.this, PhotoListActivity.class);
+				Object o = list.getItemAtPosition(position);
+				i.putExtra("Album", (String)o);
+				startActivity(i);
+			}	
+		});
 		registerForContextMenu(list);
 	}
 	
@@ -94,7 +104,6 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Edit");
 		menu.add("Delete");
-		menu.add("View");
 	}
 	
 	@Override
@@ -107,15 +116,6 @@ public class MainActivity extends ActionBarActivity {
 			Object o = list.getItemAtPosition(adapterMenuInfo.position);
 			i.putExtra("Old_Album", (String)o);
 			startActivity(i);
-		} else if ("View".equals(item.getTitle())){
-		
-			Intent i = new Intent(this, PhotoListActivity.class);
-			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
-			Object o = list.getItemAtPosition(adapterMenuInfo.position);
-			i.putExtra("Album", (String)o);
-			startActivity(i);
-
-		
 		} else {
 			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
 			Object o = list.getItemAtPosition(adapterMenuInfo.position);
