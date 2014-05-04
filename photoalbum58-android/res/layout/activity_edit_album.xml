@@ -1,0 +1,48 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cs213.photoAlbum.android.EditAlbum"
+    tools:ignore="MergeRootFrame" >
+
+    <EditText
+        android:id="@+id/TextField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="65dp"
+        android:layout_y="181dp"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="78dp"
+        android:layout_y="104dp"
+        android:text="New Album Name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/Apply"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="72dp"
+        android:layout_y="318dp"
+        android:text="Apply" />
+
+    <Button
+        android:id="@+id/Cancel"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="199dp"
+        android:layout_y="318dp"
+        android:text="Cancel" />
+
+</AbsoluteLayout>
+

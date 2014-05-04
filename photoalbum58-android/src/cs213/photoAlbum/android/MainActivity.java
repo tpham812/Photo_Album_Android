@@ -1,11 +1,15 @@
 package cs213.photoAlbum.android;
 
-import cs213.photoAlbum.simpleview.ViewContainer;
+import java.util.ArrayList;
+
+import java.util.List;
+
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,74 +18,61 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
+	public static int i = 0;
 	
+	public static ArrayAdapter<String> adapter; 
 	
-	private ViewContainer container;
-
-	@Override
+	public static List <String> list = new ArrayList<String>();
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		container = ViewContainer.getInstance();
-		if(container == null) {
-			ViewContainer.init(getApplicationContext().getFilesDir().getAbsolutePath());
-		}
-		
 		setContentView(R.layout.activity_main);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		setTitle("Photo Album");
 		populateList();
 	}
 	
-	private void populateList() {
+	public void populateList() {
 		
-		String[] list = {"Red", "Blue", "Yellow",  "ListPhotos", getApplicationContext().getFilesDir().getAbsolutePath()};
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.color_list, list);
+		list.add("Red"); 
+		list.add("Blue");
+		list.add("Yellow");
+		
+		adapter = new ArrayAdapter<String>(this, R.layout.color_list, list);
 		final ListView list2 = (ListView) findViewById(R.id.listView1);
 		list2.setAdapter(adapter);
-		list2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				Object o = list2.getItemAtPosition(position);
-				String s = (String)o;
-				if(s.equals("Red")) {
-					Intent myIntent = new Intent(MainActivity.this, SecondActivity.class);
-					startActivity(myIntent);
-				}
-			}
-		});
-		
-		list2.setOnItemLongClickListener(new OnItemLongClickListener() {
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long id) {
-				Object o = list2.getItemAtPosition(position);
-				String s = (String)o;
-				if(s.equals("Blue")) {
-					Intent myIntent = new Intent(MainActivity.this, SecondActivity.class);
-					startActivity(myIntent);
-				}
-				return true;
-			}
-		});
-		
-		list2.setOnItemLongClickListener(new OnItemLongClickListener() {
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long id) {
-				Object o = list2.getItemAtPosition(position);
-				String s = (String)o;
-				if(s.equals("ListPhotos")) {
-					Intent myIntent = new Intent(MainActivity.this, PhotoListActivity.class);
-					startActivity(myIntent);
-				}
-				return true;
-			}
-		});
+		registerForContextMenu(list2);
 	}
 	
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.add("Delete");
+		menu.add("Edit");
+	}
+	
+	
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		super.onContextItemSelected(item);
+		if(item.getTitle() == "Edit") {
+			Intent i = new Intent(this, EditAlbum.class);
+			startActivity(i);
+		}
+		
+		return true;
+	
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -99,6 +90,7 @@ public class MainActivity extends ActionBarActivity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 

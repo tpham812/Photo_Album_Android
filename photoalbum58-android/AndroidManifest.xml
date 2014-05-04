@@ -27,16 +27,8 @@
             android:label="@string/title_activity_second" >
         </activity>
         <activity
-            android:name="cs213.photoAlbum.android.PhotoListActivity"
-            android:label="@string/title_photo_list" >
-        </activity>
-        <activity
-            android:name="cs213.photoAlbum.android.PhotoDetailActivity"
-            android:label="@string/title_photo_detail"
-            android:parentActivityName="cs213.photoAlbum.android.PhotoListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="cs213.photoAlbum.android.PhotoListActivity" />
+            android:name="cs213.photoAlbum.android.EditAlbum"
+            android:label="@string/title_activity_edit_album" >
         </activity>
     </application>
 
