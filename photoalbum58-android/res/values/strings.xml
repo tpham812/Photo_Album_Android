@@ -5,5 +5,6 @@
     <string name="hello_world">Hello world photoalbum58-android-test!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_edit_album">EditAlbum</string>
 
 </resources>

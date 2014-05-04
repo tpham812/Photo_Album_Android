@@ -26,6 +26,10 @@
             android:name="cs213.photoAlbum.android.SecondActivity"
             android:label="@string/title_activity_second" >
         </activity>
+        <activity
+            android:name="cs213.photoAlbum.android.EditAlbum"
+            android:label="@string/title_activity_edit_album" >
+        </activity>
     </application>
 
 </manifest>
