@@ -31,8 +31,7 @@ public class CreateAlbum extends ActionBarActivity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		buildAlertDialog();
-		setTitle("Edit Album");
-		setTitle("Edit Album");
+		setTitle("Create Album");
 		tf   = (EditText)findViewById(R.id.TextField2);
 		create = (Button) findViewById(R.id.Create2);
 		create.setOnClickListener(new View.OnClickListener() {
