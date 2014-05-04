@@ -1,18 +1,31 @@
 package cs213.photoAlbum.android;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedSet;
+
+import cs213.photoAlbum.model.IPhoto;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.os.Build;
 
 public class SearchPhotos extends ActionBarActivity {
 
+	private Button search;
+	private Button cancel;
+	private AlertDialog ad;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,6 +35,49 @@ public class SearchPhotos extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		buildAlertDialog();
+		search = (Button)findViewById(R.id.Search2);
+		search.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				List<String> tagType = new ArrayList<String>();
+				List<String> tagValue = new ArrayList<String>();
+				getTags(tagType, tagValue);
+				SortedSet<IPhoto> photos = MainActivity.container.getPhotosByTag(tagType, tagValue);
+				if(photos.isEmpty()) {
+					ad.show();
+				}
+			}
+			public void getTags(List<String> tagType, List<String> tagValue) {
+				tagType.add(((EditText) findViewById(R.id.tf1_1)).getText().toString());
+				tagType.add(((EditText) findViewById(R.id.tf2_1)).getText().toString());
+				tagType.add(((EditText) findViewById(R.id.tf3_1)).getText().toString());
+				tagType.add(((EditText) findViewById(R.id.tf4_1)).getText().toString());
+				tagType.add(((EditText) findViewById(R.id.tf5_1)).getText().toString());
+				tagValue.add(((EditText) findViewById(R.id.tf1_2)).getText().toString());
+				tagValue.add(((EditText) findViewById(R.id.tf2_2)).getText().toString());
+				tagValue.add(((EditText) findViewById(R.id.tf3_2)).getText().toString());
+				tagValue.add(((EditText) findViewById(R.id.tf4_2)).getText().toString());
+				tagValue.add(((EditText) findViewById(R.id.tf5_2)).getText().toString());
+			}
+		});
+		cancel = (Button)findViewById(R.id.Cancel3);
+		cancel.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				finish();
+			}
+		});
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void buildAlertDialog() {
+		ad = new AlertDialog.Builder(this).create();
+		ad.setTitle("No Result");
+		ad.setMessage("No photos match your search.");
+		ad.setButton("Close", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				ad.cancel();
+			}
+		});
 	}
 
 	@Override
