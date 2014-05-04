@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 	
 	private void populateList() {
 		
-		String[] list = {"Red", "Blue", "Yellow",  "Who", getApplicationContext().getFilesDir().getAbsolutePath()};
+		String[] list = {"Red", "Blue", "Yellow",  "ListPhotos", getApplicationContext().getFilesDir().getAbsolutePath()};
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.color_list, list);
 		final ListView list2 = (ListView) findViewById(R.id.listView1);
 		list2.setAdapter(adapter);
@@ -63,6 +63,18 @@ public class MainActivity extends ActionBarActivity {
 				String s = (String)o;
 				if(s.equals("Blue")) {
 					Intent myIntent = new Intent(MainActivity.this, SecondActivity.class);
+					startActivity(myIntent);
+				}
+				return true;
+			}
+		});
+		
+		list2.setOnItemLongClickListener(new OnItemLongClickListener() {
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long id) {
+				Object o = list2.getItemAtPosition(position);
+				String s = (String)o;
+				if(s.equals("ListPhotos")) {
+					Intent myIntent = new Intent(MainActivity.this, PhotoListActivity.class);
 					startActivity(myIntent);
 				}
 				return true;
