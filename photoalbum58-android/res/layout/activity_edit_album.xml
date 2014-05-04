@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="72dp"
-        android:layout_y="318dp"
+        android:layout_y="282dp"
         android:text="Apply" />
 
     <Button
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="199dp"
-        android:layout_y="318dp"
+        android:layout_y="282dp"
         android:text="Cancel" />
 
 </AbsoluteLayout>
