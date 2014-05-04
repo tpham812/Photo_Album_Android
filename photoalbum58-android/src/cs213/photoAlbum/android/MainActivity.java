@@ -1,8 +1,11 @@
 package cs213.photoAlbum.android;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import cs213.photoAlbum.model.IAlbum;
 import cs213.photoAlbum.simpleview.ViewContainer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -14,19 +17,20 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
-	public static int i = 0;
 	
-	public static ArrayAdapter<String> adapter; 
-	
-	public static List <String> list = new ArrayList<String>();
-	
-	private ViewContainer container;
+	private ArrayAdapter<String> adapter; 
+	private Button search;
+	private Button create;
+	private ListView list;
+	public static ViewContainer container;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -44,22 +48,41 @@ public class MainActivity extends ActionBarActivity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		setTitle("Photo Album");
+		create = (Button) findViewById(R.id.Create);
+		create.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(MainActivity.this, CreateAlbum.class);
+				startActivity(i);
+			}
+		});
+		search = (Button) findViewById(R.id.Search);
 		populateList();
 	}
 	
 	public void populateList() {
 		
-		list.add("Red"); 
-		list.add("Blue");
-		list.add("Yellow");
-		
-		adapter = new ArrayAdapter<String>(this, R.layout.color_list, list);
-		final ListView list2 = (ListView) findViewById(R.id.listView1);
-		list2.setAdapter(adapter);
-		registerForContextMenu(list2);
+		Collection<IAlbum> albums = container.listAlbums();
+		List<String> albumList = new ArrayList<String>();
+		toArrayList(albums, albumList);
+		list = (ListView) findViewById(R.id.listView1);
+		adapter = new ArrayAdapter<String>(this, R.layout.album_list, albumList);
+		list.setAdapter(adapter); 
+		registerForContextMenu(list);
 	}
 	
-
+	public void toArrayList(Collection<IAlbum> albums, List<String> albumList) {
+		
+		Iterator<IAlbum> iterator = albums.iterator();
+		while(iterator.hasNext()) {
+			albumList.add(iterator.next().getAlbumName());
+		}
+	}
+	
+	public void onRestart() {
+		
+		super.onRestart();
+		populateList();
+	}
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -77,7 +100,12 @@ public class MainActivity extends ActionBarActivity {
 			Intent i = new Intent(this, EditAlbum.class);
 			startActivity(i);
 		}
-		
+		else {
+			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
+			Object o = list.getItemAtPosition(adapterMenuInfo.position);
+			container.deleteAlbum((String)o);
+			populateList();
+		 }
 		return true;
 	
 	}
