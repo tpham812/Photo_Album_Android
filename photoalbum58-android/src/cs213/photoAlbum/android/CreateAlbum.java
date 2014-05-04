@@ -48,6 +48,7 @@ public class CreateAlbum extends ActionBarActivity {
 				else {
 					MainActivity.container.createAlbum(albumName);
 					MainActivity.albumChange = true;
+					MainActivity.container.saveUser();
 					finish();
 				}
 			}
