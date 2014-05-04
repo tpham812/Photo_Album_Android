@@ -34,6 +34,19 @@
             android:name="cs213.photoAlbum.android.CreateAlbum"
             android:label="@string/title_activity_create_album" >
         </activity>
+        <activity
+            android:name="cs213.photoAlbum.android.PhotoListActivity"
+            android:label="@string/title_photo_list" >
+        </activity>
+        <activity
+            android:name="cs213.photoAlbum.android.PhotoDetailActivity"
+            android:label="@string/title_photo_detail"
+            android:parentActivityName="cs213.photoAlbum.android.PhotoListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cs213.photoAlbum.android.PhotoListActivity" />
+        </activity>
+        
     </application>
 
 </manifest>

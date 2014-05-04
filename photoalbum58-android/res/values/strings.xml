@@ -7,5 +7,7 @@
     <string name="title_activity_second">SecondActivity</string>
     <string name="title_activity_edit_album">EditAlbum</string>
     <string name="title_activity_create_album">CreateAlbum</string>
-
+    <string name="title_photo_list">Photos</string>
+    <string name="title_photo_detail">Photo Detail</string>
+    
 </resources>
