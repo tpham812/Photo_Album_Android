@@ -36,19 +36,24 @@ public class EditAlbum extends ActionBarActivity {
 		apply.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				String albumName = tf.getText().toString().trim();
-				if(albumName.equals("")) {
+				String newAlbumName = tf.getText().toString().trim();
+				String oldAlbumName = getIntent().getExtras().getString("Old_Album");
+				if(newAlbumName.equals("")) {
 					ad.setMessage("Did not specify  a name for album.");
 					ad.show();
 				}
-				if(MainActivity.container.isAlbumExist(albumName)) {
+				if(newAlbumName.equals(oldAlbumName)) {
+					ad.setMessage("New album name must be different than the old album name.");
+					ad.show();
+				}
+				else if(MainActivity.container.isAlbumExist(newAlbumName)) {
 					ad.setMessage("Album name already exists.");
 					ad.show();
 				}
 				else {
-					
-					MainActivity.container.editAlbum(albumName, getIntent().getExtras().getString("Old_Album"));
+					MainActivity.container.editAlbum(newAlbumName, getIntent().getExtras().getString("Old_Album"));
 					MainActivity.albumChange = true;
+					MainActivity.container.saveUser();
 					finish();
 				}
 			}
