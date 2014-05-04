@@ -73,7 +73,6 @@ public class EditAlbum extends ActionBarActivity {
 	public void buildAlertDialog() {
 		ad = new AlertDialog.Builder(this).create();
 		ad.setTitle("Error!");
-		ad.setMessage("Album name already exists.");
 		ad.setButton("Close", new DialogInterface.OnClickListener() {
 			
 			public void onClick(DialogInterface dialog, int which) {
