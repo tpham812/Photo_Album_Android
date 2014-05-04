@@ -33,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
 		container = ViewContainer.getInstance();
 		if(container == null) {
 			ViewContainer.init(getApplicationContext().getFilesDir().getAbsolutePath());
+			container = ViewContainer.getInstance();
 		}
 		
 		super.onCreate(savedInstanceState);
