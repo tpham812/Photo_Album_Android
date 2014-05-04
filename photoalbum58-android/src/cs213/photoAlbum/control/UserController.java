@@ -20,8 +20,8 @@ public class UserController implements IUserController {
 	/**
 	 * Instantiates a new user controller.
 	 */
-	public UserController(){
-		this.backend = new Backend();		
+	public UserController(String dataFolder){
+		this.backend = new Backend(dataFolder);		
 	}
 
 	/* (non-Javadoc)

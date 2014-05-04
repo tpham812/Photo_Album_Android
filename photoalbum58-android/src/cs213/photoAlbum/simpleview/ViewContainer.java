@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.SortedSet;
 
+
 import cs213.photoAlbum.control.AlbumController;
 import cs213.photoAlbum.control.IAlbumController;
 import cs213.photoAlbum.control.IPhotoController;
@@ -43,15 +44,30 @@ public class ViewContainer {
 
 	/** The photos. */
 	protected List<IPhoto> photos;
+	
+	private static ViewContainer container;
 
 	/**
 	 * Instantiates a new view container.
 	 */
-	public ViewContainer() {
+	public ViewContainer(String dataFolder) {
 
-		this.userController = new UserController();
-		this.photoController = new PhotoController();
-		this.albumController = new AlbumController();
+		this.userController = new UserController(dataFolder);
+		this.photoController = new PhotoController(dataFolder);
+		this.albumController = new AlbumController(dataFolder);
+	}
+	
+	public static void init(String dataFolder) {
+		container = new ViewContainer(dataFolder);
+		
+		if(container.login("default") == null){
+			container.addUser("default", "default");
+		}
+		container.login("default");
+	}
+	
+	public static ViewContainer getInstance(){
+		return container;
 	}
 
 	/**

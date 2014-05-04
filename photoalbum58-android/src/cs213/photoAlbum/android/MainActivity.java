@@ -1,5 +1,6 @@
 package cs213.photoAlbum.android;
 
+import cs213.photoAlbum.simpleview.ViewContainer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,10 +18,19 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
+	
+	
+	private ViewContainer container;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		container = ViewContainer.getInstance();
+		if(container == null) {
+			ViewContainer.init(getApplicationContext().getFilesDir().getAbsolutePath());
+		}
+		
 		setContentView(R.layout.activity_main);
 
 		if (savedInstanceState == null) {
@@ -32,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 	
 	private void populateList() {
 		
-		String[] list = {"Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Violet", "This", "Is", "Only", "A", "Test", "And", "It's", "Cool", "Who", "Are", "You", "Right", "Now", "Am", "I"};
+		String[] list = {"Red", "Blue", "Yellow",  "Who", getApplicationContext().getFilesDir().getAbsolutePath()};
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.color_list, list);
 		final ListView list2 = (ListView) findViewById(R.id.listView1);
 		list2.setAdapter(adapter);

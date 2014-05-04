@@ -16,7 +16,13 @@ import java.util.List;
  * 
  */
 public class Backend implements IBackend {
-
+	
+	private String dataFolder;
+	
+	public Backend(String dataFolder){
+		this.dataFolder = dataFolder;
+	}
+	
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IBackend#retrievePhotoFile(cs213.photoAlbum.model.IPhoto, cs213.photoAlbum.model.IUser)
 	 */
@@ -101,7 +107,7 @@ public class Backend implements IBackend {
 	 * @return the data directory
 	 */
 	private File getDataDir() {
-		File f = new File("data");
+		File f = new File(dataFolder);
 		
 		if(!f.exists()){
 			f.mkdir();
@@ -141,13 +147,13 @@ public class Backend implements IBackend {
 	 */
 	private File getSerializedFile(String userId) {
 		
-		File dataDir = new File("data");
+		File dataDir = new File(dataFolder);
 		
 		if(!dataDir.exists()) {
 			dataDir.mkdir();
 		}
 		
-		return new File("data/" + userId + ".ser");
+		return new File(dataFolder + "/" + userId + ".ser");
 	}
 	
 	/* (non-Javadoc)

@@ -27,8 +27,8 @@ public class AlbumController implements IAlbumController {
 	/**
 	 * Instantiates a new album controller.
 	 */
-	public AlbumController() {
-		this.backend = new Backend();
+	public AlbumController(String dataFolder) {
+		this.backend = new Backend(dataFolder);
 	}
 	
 

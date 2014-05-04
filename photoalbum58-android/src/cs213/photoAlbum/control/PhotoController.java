@@ -26,8 +26,8 @@ public class PhotoController implements IPhotoController {
 	/**
 	 * Instantiates a new photo controller.
 	 */
-	public PhotoController() {
-		this.backend = new Backend();
+	public PhotoController(String dataFolder) {
+		this.backend = new Backend(dataFolder);
 	}
 
 	/* (non-Javadoc)
