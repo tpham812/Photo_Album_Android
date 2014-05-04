@@ -30,6 +30,10 @@
             android:name="cs213.photoAlbum.android.EditAlbum"
             android:label="@string/title_activity_edit_album" >
         </activity>
+        <activity
+            android:name="cs213.photoAlbum.android.CreateAlbum"
+            android:label="@string/title_activity_create_album" >
+        </activity>
     </application>
 
 </manifest>
