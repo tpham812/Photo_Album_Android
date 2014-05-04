@@ -9,5 +9,6 @@
     <string name="title_activity_create_album">CreateAlbum</string>
     <string name="title_photo_list">Photos</string>
     <string name="title_photo_detail">Photo Detail</string>
-    
+    <string name="title_activity_search_photos">SearchPhotos</string>
+
 </resources>

@@ -46,7 +46,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cs213.photoAlbum.android.PhotoListActivity" />
         </activity>
-        
+        <activity
+            android:name="cs213.photoAlbum.android.SearchPhotos"
+            android:label="@string/title_activity_search_photos" >
+        </activity>
     </application>
 
 </manifest>

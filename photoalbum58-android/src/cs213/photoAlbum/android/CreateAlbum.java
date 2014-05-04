@@ -55,7 +55,6 @@ public class CreateAlbum extends ActionBarActivity {
 		});
 		cancel = (Button) findViewById(R.id.Cancel2);
 		cancel.setOnClickListener(new View.OnClickListener() {
-			
 			public void onClick(View v) {
 				finish();
 			}

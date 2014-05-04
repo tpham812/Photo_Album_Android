@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
 	private ArrayAdapter<String> adapter;
 	private Button search;
 	private Button create;
-	public static ListView list;
+	private ListView list;
 	public static boolean albumChange = false;
 	public static ViewContainer container;
 	
@@ -60,6 +60,12 @@ public class MainActivity extends ActionBarActivity {
 			}
 		});
 		search = (Button) findViewById(R.id.Search);
+		search.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(MainActivity.this, SearchPhotos.class);
+				startActivity(i);
+			}
+		});
 		populateList();
 	}
 	
@@ -83,7 +89,6 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	public void toArrayList(Collection<IAlbum> albums, List<String> albumList) {
-		
 		Iterator<IAlbum> iterator = albums.iterator();
 		while(iterator.hasNext()) {
 			albumList.add(iterator.next().getAlbumName());
@@ -91,7 +96,6 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	public void onRestart() {
-		
 		super.onRestart();
 		if(albumChange) {
 			populateList();
@@ -124,7 +128,6 @@ public class MainActivity extends ActionBarActivity {
 			populateList();
 		 }
 		return true;
-	
 	}
 
 	@Override
@@ -144,7 +147,6 @@ public class MainActivity extends ActionBarActivity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-		
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -155,7 +157,6 @@ public class MainActivity extends ActionBarActivity {
 
 		public PlaceholderFragment() {
 		}
-
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -164,5 +165,4 @@ public class MainActivity extends ActionBarActivity {
 			return rootView;
 		}
 	}
-
 }
