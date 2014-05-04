@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">photoalbum58-android</string>
+    <string name="hello_world">Hello world photoalbum58-android!</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
