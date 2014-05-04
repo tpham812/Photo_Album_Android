@@ -88,6 +88,7 @@ public class MainActivity extends ActionBarActivity {
 			albumChange = false;
 		}
 	}
+	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -95,8 +96,6 @@ public class MainActivity extends ActionBarActivity {
 		menu.add("Edit");
 	}
 	
-	
-
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
@@ -112,6 +111,7 @@ public class MainActivity extends ActionBarActivity {
 			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
 			Object o = list.getItemAtPosition(adapterMenuInfo.position);
 			container.deleteAlbum((String)o);
+			container.saveUser();
 			populateList();
 		 }
 		return true;

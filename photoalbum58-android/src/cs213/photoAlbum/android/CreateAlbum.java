@@ -38,7 +38,7 @@ public class CreateAlbum extends ActionBarActivity {
 			public void onClick(View v) {
 				String albumName = tf.getText().toString().trim();
 				if(albumName.equals("")) {
-					ad.setMessage("Did not specify  a name for album.");
+					ad.setMessage("Did not specify a name for album.");
 					ad.show();
 				}
 				if(MainActivity.container.isAlbumExist(albumName)) {
