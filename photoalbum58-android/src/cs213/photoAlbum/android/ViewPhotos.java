@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import cs213.photoAlbum.model.IPhoto;
 import cs213.photoAlbum.simpleview.ViewContainer;
 
@@ -34,53 +35,63 @@ public class ViewPhotos extends Activity {
 		int counter = 0;
 		TableRow row = null;
 
-		if(photos != null) {
-		for (final IPhoto p : photos) {
+		if (photos != null) {
+			for (final IPhoto p : photos) {
 
-			if (counter % 3 == 0) {
-				row = new TableRow(this);
-				row.setPadding(5, 5, 5, 5);
-				tableLayout.addView(row, new TableLayout.LayoutParams(
-						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+				if (counter % 3 == 0) {
+					row = new TableRow(this);
+					row.setPadding(5, 5, 5, 5);
+					tableLayout.addView(row, new TableLayout.LayoutParams(
+							LayoutParams.WRAP_CONTENT,
+							LayoutParams.WRAP_CONTENT));
+				}
+
+				counter++;
+
+				// File imgFile = new File("file:///android_asset/" +
+				// p.getName());
+				File imgFile = new File(p.getName());
+				if (imgFile.exists()) {
+					Bitmap myBitmap = BitmapFactory.decodeFile(imgFile
+							.getAbsolutePath());
+
+					ImageView image = new ImageView(ViewPhotos.this);
+					image.setImageBitmap(resize(myBitmap, 200, 200));
+
+					image.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent i = new Intent(ViewPhotos.this,
+									MainActivity.class);
+							ViewContainer.getInstance().setPhoto(p);
+							startActivity(i);
+						}
+					});
+
+					image.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+
+						@Override
+						public void onCreateContextMenu(ContextMenu menu,
+								View v, ContextMenuInfo menuInfo) {
+							menu.add(0, 0, 0, "Move");
+							menu.add(0, 1, 0, "Delete");
+						}
+					});
+
+					// registerForContextMenu(image);
+
+					row.addView(image);
+					Log.e(getLocalClassName(), imgFile.getAbsolutePath());
+				}
 			}
+		} else {
+			row = new TableRow(this);
+			tableLayout.addView(row, new TableLayout.LayoutParams(
+					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
-			counter++;
-
-			// File imgFile = new File("file:///android_asset/" + p.getName());
-			File imgFile = new File(p.getName());
-			if (imgFile.exists()) {
-				Bitmap myBitmap = BitmapFactory.decodeFile(imgFile
-						.getAbsolutePath());
-
-				ImageView image = new ImageView(ViewPhotos.this);
-				image.setImageBitmap(resize(myBitmap, 200, 200));
-
-				image.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Intent i = new Intent(ViewPhotos.this,
-								MainActivity.class);
-						ViewContainer.getInstance().setPhoto(p);
-						startActivity(i);
-					}
-				});
-
-				image.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-
-					@Override
-					public void onCreateContextMenu(ContextMenu menu, View v,
-							ContextMenuInfo menuInfo) {
-						menu.add(0, 0, 0, "Move");
-						menu.add(0, 1, 0, "Delete");
-					}
-				});
-
-				// registerForContextMenu(image);
-
-				row.addView(image);
-				Log.e(getLocalClassName(), imgFile.getAbsolutePath());
-			}
-		}
+			TextView tView = new TextView(ViewPhotos.this);
+			tView.setText("No photos");
+			row.addView(tView);
 		}
 	}
 
