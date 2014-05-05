@@ -28,13 +28,13 @@ public class ViewContainer {
 	/**
 	 * Controller to manage user admin.
 	 */
-	protected IUserController userController;
+	public IUserController userController;
 
 	/** The photo controller. */
-	protected IPhotoController photoController;
+	public IPhotoController photoController;
 
 	/** The album controller. */
-	protected IAlbumController albumController;
+	public IAlbumController albumController;
 
 	/** The user. */
 	private IUser user;

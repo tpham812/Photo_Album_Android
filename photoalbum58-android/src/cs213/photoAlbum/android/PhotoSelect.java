@@ -18,13 +18,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class PhotoBrowser extends Activity implements OnClickListener {
+public class PhotoSelect extends Activity implements OnClickListener {
     /** Called when the activity is first created. */
-	static final String 	LOG_TAG 	= "PhotoPicker";
+	static final String 	LOG_TAG 	= "PhotoSelect";
 	static final int 		idBut 		= Menu.FIRST + 1,
 							idIntentID 	= Menu.FIRST + 2;
 	Button m_Button;
-	ImageView m_Image;
 	TextView m_Tv;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,9 +42,7 @@ public class PhotoBrowser extends Activity implements OnClickListener {
   		m_Button.setText("Select Image");
   		m_Button.setOnClickListener(this);
         panel.addView(m_Button);
-        
-        m_Image = new ImageView(this);
-        panel.addView(m_Image);
+
         
         setContentView(panel);
     }
@@ -74,11 +71,7 @@ public class PhotoBrowser extends Activity implements OnClickListener {
 				  Log.d(LOG_TAG, "Picture:" + fileSrc);
 				  m_Tv.setText("Image selected:"+fileSrc);
 				  
-				  Bitmap bitmapPreview = BitmapFactory.decodeFile(fileSrc); //load preview image
-				  BitmapDrawable bmpDrawable = new BitmapDrawable(bitmapPreview);
-				  m_Image.setBackgroundDrawable(bmpDrawable);
-			  }
-			  else {
+			  } else {
 
 				  m_Tv.setText("Image selection canceled!");
 			  }
