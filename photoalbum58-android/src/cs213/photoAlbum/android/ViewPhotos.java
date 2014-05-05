@@ -179,7 +179,7 @@ public class ViewPhotos extends Activity {
 		final String albumToMoveFrom = getIntent().getExtras().getString("Album");
 		albumList = getAlbumList(viewContainer.listAlbums(), albumToMoveFrom);
 		ab = new AlertDialog.Builder(this);
-		ab.setTitle("Choose album to move to.");
+		ab.setTitle("Choose a destination for photo.");
 		ab.setSingleChoiceItems(albumList, -1, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				IPhoto photo = viewContainer.getPhotos().get(id);
