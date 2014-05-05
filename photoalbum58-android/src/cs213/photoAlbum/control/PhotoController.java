@@ -123,17 +123,26 @@ public class PhotoController implements IPhotoController {
 	public SortedSet<IPhoto> getPhotosByTag(List<String> tagNames, List<String> tagValues, IUser user) {
 
 		SortedSet<IPhoto> result = new TreeSet<IPhoto>(new PhotoComparator());
-		
+
+		boolean m = false;
+
 		for (IPhoto p : user.getPhotos().values()) {
+			m = true;
+
 			for (int i = 0; i < tagNames.size(); i++) {
-				String tagName = tagNames.get(i);
-				String tagValue = tagValues.get(i);
-				if (matches(p, tagName.toLowerCase().trim(), tagValue.trim())) {
-					result.add(p);
+				String tagName = tagNames.get(i).toLowerCase().trim();
+				String tagValue = tagValues.get(i).trim();
+
+				if (!matches(p, tagName, tagValue)) {
+					m = false;
 					break;
 				}
 			}
+			if (m) {
+				result.add(p);
+			}
 		}
+
 		return result;
 	}
 
@@ -149,23 +158,20 @@ public class PhotoController implements IPhotoController {
 
 		if (tagName.isEmpty()) {
 			for (SortedSet<String> vals : p.getTags().values()) {
-				Iterator<String> iterator = vals.iterator();
-				while(iterator.hasNext()) {
-					String tag = iterator.next();
-					if(tag.trim().startsWith(tagValue) || tag.trim().equals(tagValue)) 
-						return true;
+				if (vals.contains(tagValue)) {
+					return true;
 				}
 			}
 		} else {
 			SortedSet<String> s = p.getTags().get(tagName);
-			if (s != null) {
-				Iterator<String> iterator = s.iterator();
-				while(iterator.hasNext()) {
-					String tag = iterator.next();
-					if(tag.trim().startsWith(tagValue) || tag.trim().equals(tagValue)) 
-						return true;
+			if(s!= null) {
+			for(String s1: s) {
+				if(s1.contains(tagValue)){
+					return true;
 				}
 			}
+			}
+			
 		}
 		return false;
 	}
