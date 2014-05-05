@@ -112,14 +112,13 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Rename");
 		menu.add("Delete");
-
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
 		super.onContextItemSelected(item);
-		if ("Edit".equals(item.getTitle())) {
+		if ("Rename".equals(item.getTitle())) {
 			Intent i = new Intent(this, EditAlbum.class);
 			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item
 					.getMenuInfo();
