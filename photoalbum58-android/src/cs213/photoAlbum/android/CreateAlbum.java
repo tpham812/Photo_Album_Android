@@ -43,7 +43,7 @@ public class CreateAlbum extends ActionBarActivity {
 					ad.setMessage("Did not specify a name for album.");
 					ad.show();
 				}
-				if(container.isAlbumExist(albumName)) {
+				else if(container.isAlbumExist(albumName)) {
 					ad.setMessage("Album name already exists.");
 					ad.show();
 				}
