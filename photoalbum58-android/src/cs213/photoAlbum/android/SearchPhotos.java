@@ -47,15 +47,16 @@ public class SearchPhotos extends ActionBarActivity {
 				getTags(tagType, tagValue);
 			
 				if(tagType.size() == 0 && tagValue.size() == 0) {
-					ad.setTitle("Error");
+					ad.setTitle("Error!");
 					ad.setMessage("Must entered in at least one tag before searching.");
 					ad.show();
 				} else {
 					SortedSet<IPhoto> photos = container.getPhotosByTag(tagType, tagValue);
 					if(photos.size() == 0) {
-						ad.setTitle("No Result");
+						ad.setTitle("No Result!");
 						ad.setMessage("No photos matches your search.");
 						ad.show();
+						
 					}
 					else {
 						container.setPhotos(photos);
@@ -119,6 +120,7 @@ public class SearchPhotos extends ActionBarActivity {
 		((EditText) findViewById(R.id.tf3_2)).setText("");
 		((EditText) findViewById(R.id.tf4_2)).setText("");
 		((EditText) findViewById(R.id.tf5_2)).setText("");
+		((EditText) findViewById(R.id.tf1_1)).requestFocus();
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -127,6 +129,7 @@ public class SearchPhotos extends ActionBarActivity {
 		ad.setButton("Close", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				ad.cancel();
+				((EditText) findViewById(R.id.tf1_1)).requestFocus();
 			}
 		});
 	}
