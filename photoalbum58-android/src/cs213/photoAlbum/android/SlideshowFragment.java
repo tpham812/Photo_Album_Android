@@ -20,6 +20,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import cs213.photoAlbum.model.IPhoto;
 import cs213.photoAlbum.simpleview.ViewContainer;
+import cs213.photoAlbum.util.Utils;
 
 public class SlideshowFragment extends Fragment {
 
@@ -65,7 +66,7 @@ public class SlideshowFragment extends Fragment {
 					.getAbsolutePath());
 
 			ImageView image = new ImageView(row.getContext());
-			image.setImageBitmap(myBitmap);			
+			image.setImageBitmap(Utils.resize(myBitmap, 600, 600));			
 			row.addView(image);
 		}
         

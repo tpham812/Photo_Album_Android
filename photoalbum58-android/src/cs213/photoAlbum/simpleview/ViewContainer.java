@@ -225,13 +225,7 @@ public class ViewContainer {
 	 * @param album the new album
 	 */
 	public void setAlbum(IAlbum album) {
-		this.album = album;
-		
-		if(album != null) {
-			this.photos = new ArrayList<IPhoto>(album.getPhotos());
-		} else {
-			this.photos = null;
-		}
+		this.album = album;	
 	}
 
 	/**
@@ -240,6 +234,12 @@ public class ViewContainer {
 	 * @return the photos
 	 */
 	public List<IPhoto> getPhotos() {
+		
+		if(album != null) {
+			this.photos = new ArrayList<IPhoto>(album.getPhotos());
+		} else {
+			return this.photos;
+		}
 		return photos;
 	}
 

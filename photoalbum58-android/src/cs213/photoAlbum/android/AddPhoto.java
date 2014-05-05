@@ -1,5 +1,6 @@
 package cs213.photoAlbum.android;
 
+import cs213.photoAlbum.model.IAlbum;
 import cs213.photoAlbum.simpleview.ViewContainer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -65,7 +66,7 @@ public class AddPhoto extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(AddPhoto.this, MainActivity.class);
+				Intent i = new Intent(AddPhoto.this, ViewPhotos.class);
 				startActivity(i);
 			}
 		});
@@ -75,7 +76,7 @@ public class AddPhoto extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(AddPhoto.this, MainActivity.class);
+				Intent i = new Intent(AddPhoto.this, ViewPhotos.class);
 
 				ViewContainer viewContainer = ViewContainer.getInstance();
 
@@ -84,7 +85,7 @@ public class AddPhoto extends ActionBarActivity {
 						.getText().toString(), viewContainer.getUser());
 
 				viewContainer.saveUser();
-
+				
 				startActivity(i);
 			}
 		});

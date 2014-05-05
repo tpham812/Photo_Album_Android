@@ -19,17 +19,20 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import cs213.photoAlbum.model.IPhoto;
 import cs213.photoAlbum.simpleview.ViewContainer;
 import cs213.photoAlbum.util.Utils;
 
 public class ViewPhotos extends Activity {
+	
+	private ViewContainer viewContainer;
 
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		setContentView(R.layout.activity_view_photos);
 
-		ViewContainer viewContainer = ViewContainer.getInstance();
+		viewContainer = ViewContainer.getInstance();
 		Collection<IPhoto> photos = viewContainer.getPhotos();
 		TableLayout tableLayout = (TableLayout) findViewById(R.id.ViewPhotosLayout);
 
@@ -41,7 +44,7 @@ public class ViewPhotos extends Activity {
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		
 		Button backBtn = new Button(this);
-		backBtn.setText("Back");
+		backBtn.setText("Home");
 		backBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -52,7 +55,22 @@ public class ViewPhotos extends Activity {
 		});
 		
 		row.addView(backBtn);
-
+		
+		if(viewContainer.getAlbum() != null) {
+			Button addPhotoBtn = new Button(this);
+			addPhotoBtn.setText("Add Photo");
+			addPhotoBtn.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					
+					Intent i = new Intent(ViewPhotos.this, AddPhoto.class);	
+					i.putExtra("Album", viewContainer.getAlbum().getAlbumName());
+					startActivity(i);
+				}
+			});
+			
+			row.addView(addPhotoBtn);
+		}
 		if (photos != null && !photos.isEmpty()) {
 			for (final IPhoto p : photos) {
 
@@ -88,15 +106,17 @@ public class ViewPhotos extends Activity {
 						}
 					});
 
-					image.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-
-						@Override
-						public void onCreateContextMenu(ContextMenu menu,
-								View v, ContextMenuInfo menuInfo) {
-							menu.add(c, 0, 0, "Move");
-							menu.add(c, 1, 0, "Delete");
-						}
-					});
+					if(viewContainer.getAlbum() != null) {
+						image.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+	
+							@Override
+							public void onCreateContextMenu(ContextMenu menu,
+									View v, ContextMenuInfo menuInfo) {
+								menu.add(c, 0, 0, "Move");
+								menu.add(c, 1, 0, "Delete");
+							}
+						});
+					}
 
 					// registerForContextMenu(image);
 
@@ -127,7 +147,13 @@ public class ViewPhotos extends Activity {
 	}
 
 	private void delete(int groupId) {
-
+		
+		IPhoto photo = viewContainer.getPhotos().get(groupId);		
+		viewContainer.albumController.removePhoto(photo.getName(), viewContainer.getAlbum().getAlbumName(), viewContainer.getUser());
+		viewContainer.saveUser();
+		
+		Intent i = new Intent(ViewPhotos.this, ViewPhotos.class);
+		startActivity(i);
 	}
 
 	public void move(int groupId) {
