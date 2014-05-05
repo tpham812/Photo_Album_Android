@@ -35,7 +35,7 @@ public class ViewPhotos extends Activity {
 		int counter = 0;
 		TableRow row = null;
 
-		if (photos != null) {
+		if (photos != null && !photos.isEmpty()) {
 			for (final IPhoto p : photos) {
 
 				if (counter % 3 == 0) {
@@ -46,7 +46,7 @@ public class ViewPhotos extends Activity {
 							LayoutParams.WRAP_CONTENT));
 				}
 
-				counter++;
+				
 
 				// File imgFile = new File("file:///android_asset/" +
 				// p.getName());
@@ -67,14 +67,15 @@ public class ViewPhotos extends Activity {
 							startActivity(i);
 						}
 					});
-
+					
+					final int c = counter;
 					image.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
 
 						@Override
 						public void onCreateContextMenu(ContextMenu menu,
 								View v, ContextMenuInfo menuInfo) {
-							menu.add(0, 0, 0, "Move");
-							menu.add(0, 1, 0, "Delete");
+							menu.add(c, 0, 0, "Move");
+							menu.add(c, 1, 0, "Delete");
 						}
 					});
 
@@ -83,6 +84,8 @@ public class ViewPhotos extends Activity {
 					row.addView(image);
 					Log.e(getLocalClassName(), imgFile.getAbsolutePath());
 				}
+				
+				counter++;
 			}
 		} else {
 			row = new TableRow(this);
