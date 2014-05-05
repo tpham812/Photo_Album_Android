@@ -80,9 +80,10 @@ public class MainActivity extends ActionBarActivity {
 		list.setAdapter(adapter); 
 		list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Intent i = new Intent(MainActivity.this, PhotoListActivity.class);
+				Intent i = new Intent(MainActivity.this, ViewPhotos.class);
 				Object o = list.getItemAtPosition(position);
 				i.putExtra("Album", (String)o);
+				container.setAlbum(container.getAlbum((String)o));
 				startActivity(i);
 			}	
 		});
