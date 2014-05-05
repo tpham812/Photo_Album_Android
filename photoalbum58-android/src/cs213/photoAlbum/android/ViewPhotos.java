@@ -124,7 +124,6 @@ public class ViewPhotos extends Activity {
 						});
 					}
 
-					// registerForContextMenu(image);
 
 					row.addView(image);
 					Log.e(getLocalClassName(), imgFile.getAbsolutePath());
