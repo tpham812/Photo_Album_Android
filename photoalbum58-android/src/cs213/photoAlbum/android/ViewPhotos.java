@@ -3,8 +3,6 @@ package cs213.photoAlbum.android;
 import java.io.File;
 import java.util.Collection;
 
-import cs213.photoAlbum.model.IPhoto;
-import cs213.photoAlbum.simpleview.ViewContainer;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,10 +11,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import cs213.photoAlbum.model.IPhoto;
+import cs213.photoAlbum.simpleview.ViewContainer;
 
 public class ViewPhotos extends Activity {
 
@@ -25,29 +28,24 @@ public class ViewPhotos extends Activity {
 		setContentView(R.layout.activity_view_photos);
 
 		ViewContainer viewContainer = ViewContainer.getInstance();
-
 		Collection<IPhoto> photos = viewContainer.getPhotos();
-
 		TableLayout tableLayout = (TableLayout) findViewById(R.id.ViewPhotosLayout);
-		
-		// for (int x = 0; x < 3; x++) {
-		// ImageView image = new ImageView(ViewPhotos.this);
-		// image.setBackgroundResource(R.drawable.ic_launcher);
-		// linearLayout1.addView(image);
-		// }
+
 		int counter = 0;
 		TableRow row = null;
-		
-		for (IPhoto p : photos) {
-			
-			if(counter % 3 == 0){
+
+		if(photos != null) {
+		for (final IPhoto p : photos) {
+
+			if (counter % 3 == 0) {
 				row = new TableRow(this);
 				row.setPadding(5, 5, 5, 5);
-				tableLayout.addView(row,new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+				tableLayout.addView(row, new TableLayout.LayoutParams(
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			}
-			
+
 			counter++;
-			
+
 			// File imgFile = new File("file:///android_asset/" + p.getName());
 			File imgFile = new File(p.getName());
 			if (imgFile.exists()) {
@@ -55,19 +53,64 @@ public class ViewPhotos extends Activity {
 						.getAbsolutePath());
 
 				ImageView image = new ImageView(ViewPhotos.this);
-				image.setImageBitmap(resize(myBitmap,200,200));
+				image.setImageBitmap(resize(myBitmap, 200, 200));
 
-				
+				image.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Intent i = new Intent(ViewPhotos.this,
+								MainActivity.class);
+						ViewContainer.getInstance().setPhoto(p);
+						startActivity(i);
+					}
+				});
+
+				image.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+
+					@Override
+					public void onCreateContextMenu(ContextMenu menu, View v,
+							ContextMenuInfo menuInfo) {
+						menu.add(0, 0, 0, "Move");
+						menu.add(0, 1, 0, "Delete");
+					}
+				});
+
+				// registerForContextMenu(image);
+
 				row.addView(image);
 				Log.e(getLocalClassName(), imgFile.getAbsolutePath());
 			}
 		}
+		}
 	}
 
-	public static Bitmap resize(Bitmap image, int newHeight,
-			int newWidth) {
-		
-		
+	/*
+	 * This method is called when an item in a context menu is selected.
+	 */
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case 0:
+			move(item.getItemId());
+			break;
+		case 1:
+			delete(item.getItemId());
+			break;
+		}
+		return true;
+	}
+
+	private void delete(int itemId) {
+
+	}
+
+	public void move(int itemId) {
+
+	}
+
+	public static Bitmap resize(Bitmap image, int newHeight, int newWidth) {
+
 		int width = image.getWidth();
 		int height = image.getHeight();
 		float scaleWidth = ((float) newWidth) / width;
