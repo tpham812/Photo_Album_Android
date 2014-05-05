@@ -44,10 +44,12 @@ public class SearchPhotos extends ActionBarActivity {
 				getTags(tagType, tagValue);
 				SortedSet<IPhoto> photos = MainActivity.container.getPhotosByTag(tagType, tagValue);
 				if(photos.isEmpty()) {
+					ad.setTitle("No Result");
+					ad.setMessage("No photos match your search.");
 					ad.show();
 				}
 			}
-			public void getTags(List<String> tagType, List<String> tagValue) {
+			public void getTags(List<String> tagType, List<String> tagValue) {	
 				tagType.add(((EditText) findViewById(R.id.tf1_1)).getText().toString());
 				tagType.add(((EditText) findViewById(R.id.tf2_1)).getText().toString());
 				tagType.add(((EditText) findViewById(R.id.tf3_1)).getText().toString());
@@ -71,8 +73,6 @@ public class SearchPhotos extends ActionBarActivity {
 	@SuppressWarnings("deprecation")
 	public void buildAlertDialog() {
 		ad = new AlertDialog.Builder(this).create();
-		ad.setTitle("No Result");
-		ad.setMessage("No photos match your search.");
 		ad.setButton("Close", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				ad.cancel();
