@@ -110,7 +110,7 @@ public class MainActivity extends ActionBarActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-		menu.add("Edit");
+		menu.add("Rename");
 		menu.add("Delete");
 
 	}

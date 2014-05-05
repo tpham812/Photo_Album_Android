@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -44,24 +45,58 @@ public class SearchPhotos extends ActionBarActivity {
 				List<String> tagType = new ArrayList<String>();
 				List<String> tagValue = new ArrayList<String>();
 				getTags(tagType, tagValue);
-				SortedSet<IPhoto> photos = container.getPhotosByTag(tagType, tagValue);
-				if(photos.isEmpty()) {
-					ad.setTitle("No Result");
-					ad.setMessage("No photos match your search.");
+			
+				if(tagType.size() == 0 && tagValue.size() == 0) {
+					ad.setTitle("Error");
+					ad.setMessage("Must entered in at least one tag before searching.");
 					ad.show();
+				} else {
+					SortedSet<IPhoto> photos = container.getPhotosByTag(tagType, tagValue);
+					if(photos.size() == 0) {
+						ad.setTitle("No Result");
+						ad.setMessage("No photos matches your search.");
+						ad.show();
+					}
+					else {
+						container.setPhotos(photos);
+						container.setAlbum(null);
+						Intent i = new Intent(SearchPhotos.this, ViewPhotos.class);
+						startActivity(i);
+					}
 				}
 			}
 			public void getTags(List<String> tagType, List<String> tagValue) {	
-				tagType.add(((EditText) findViewById(R.id.tf1_1)).getText().toString());
-				tagType.add(((EditText) findViewById(R.id.tf2_1)).getText().toString());
-				tagType.add(((EditText) findViewById(R.id.tf3_1)).getText().toString());
-				tagType.add(((EditText) findViewById(R.id.tf4_1)).getText().toString());
-				tagType.add(((EditText) findViewById(R.id.tf5_1)).getText().toString());
-				tagValue.add(((EditText) findViewById(R.id.tf1_2)).getText().toString());
-				tagValue.add(((EditText) findViewById(R.id.tf2_2)).getText().toString());
-				tagValue.add(((EditText) findViewById(R.id.tf3_2)).getText().toString());
-				tagValue.add(((EditText) findViewById(R.id.tf4_2)).getText().toString());
-				tagValue.add(((EditText) findViewById(R.id.tf5_2)).getText().toString());
+				String temp;
+				temp = ((EditText) findViewById(R.id.tf1_1)).getText().toString();
+				if(!temp.equals(""))
+					tagType.add(temp);
+				temp = ((EditText) findViewById(R.id.tf2_1)).getText().toString();
+				if(!temp.equals(""))
+					tagType.add(temp);
+				temp = ((EditText) findViewById(R.id.tf3_1)).getText().toString();
+				if(!temp.equals(""))
+					tagType.add(temp);
+				temp = ((EditText) findViewById(R.id.tf4_1)).getText().toString();
+				if(!temp.equals(""))
+					tagType.add(temp);
+				temp = ((EditText) findViewById(R.id.tf5_1)).getText().toString();
+				if(!temp.equals(""))
+					tagType.add(temp);
+				temp = ((EditText) findViewById(R.id.tf1_2)).getText().toString();
+				if(!temp.equals(""))
+					tagValue.add(temp);
+				temp = ((EditText) findViewById(R.id.tf2_2)).getText().toString();
+				if(!temp.equals(""))
+					tagValue.add(temp);
+				temp = ((EditText) findViewById(R.id.tf3_2)).getText().toString();
+				if(!temp.equals(""))
+					tagValue.add(temp);
+				temp = ((EditText) findViewById(R.id.tf4_2)).getText().toString();
+				if(!temp.equals(""))
+					tagValue.add(temp);
+				temp = ((EditText) findViewById(R.id.tf5_2)).getText().toString();
+				if(!temp.equals(""))
+					tagValue.add(temp);
 			}
 		});
 		cancel = (Button)findViewById(R.id.Cancel3);
@@ -70,6 +105,20 @@ public class SearchPhotos extends ActionBarActivity {
 				finish();
 			}
 		});
+	}
+	
+	public void onRestart() {
+		super.onRestart();
+		((EditText) findViewById(R.id.tf1_1)).setText("");
+		((EditText) findViewById(R.id.tf2_1)).setText("");
+		((EditText) findViewById(R.id.tf3_1)).setText("");
+		((EditText) findViewById(R.id.tf4_1)).setText("");
+		((EditText) findViewById(R.id.tf5_1)).setText("");
+		((EditText) findViewById(R.id.tf1_2)).setText("");
+		((EditText) findViewById(R.id.tf2_2)).setText("");
+		((EditText) findViewById(R.id.tf3_2)).setText("");
+		((EditText) findViewById(R.id.tf4_2)).setText("");
+		((EditText) findViewById(R.id.tf5_2)).setText("");
 	}
 	
 	@SuppressWarnings("deprecation")
