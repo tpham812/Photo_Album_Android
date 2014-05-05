@@ -45,6 +45,9 @@ public class ViewContainer {
 	/** The photos. */
 	protected List<IPhoto> photos;
 	
+	protected IPhoto photo;
+	
+
 	private static ViewContainer container;
 
 	/**
@@ -280,6 +283,15 @@ public class ViewContainer {
 	 */
 	public void setUser(IUser user) {
 		this.user = user;
+	}
+	
+
+	public IPhoto getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(IPhoto photo) {
+		this.photo = photo;
 	}
 
 }
