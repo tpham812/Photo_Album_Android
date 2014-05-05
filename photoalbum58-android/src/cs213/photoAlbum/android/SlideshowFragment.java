@@ -64,6 +64,8 @@ public class SlideshowFragment extends Fragment {
 		TableRow row = (TableRow) view.findViewById(R.id.tableRow1);
 		ctr = ViewContainer.getInstance();
 		photo = ctr.getPhotos().get(pageNum);
+		
+			
 
 		File imgFile = new File(photo.getName());
 		if (imgFile.exists()) {

@@ -32,7 +32,13 @@ public class ViewPhotos extends Activity {
 		super.onCreate(bundle);
 		setContentView(R.layout.activity_view_photos);
 
-		viewContainer = ViewContainer.getInstance();
+		viewContainer = ViewContainer.getInstance();		
+		if(viewContainer.getAlbum() != null) {
+			setTitle(viewContainer.getAlbum().getAlbumName());	
+		} else {
+			setTitle("Search results");
+		}
+		
 		Collection<IPhoto> photos = viewContainer.getPhotos();
 		TableLayout tableLayout = (TableLayout) findViewById(R.id.ViewPhotosLayout);
 
