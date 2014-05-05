@@ -1,5 +1,6 @@
 package cs213.photoAlbum.android;
 
+import cs213.photoAlbum.simpleview.ViewContainer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ public class CreateAlbum extends ActionBarActivity {
 	private AlertDialog ad;
 	private Button cancel;
 	private EditText tf;
+	private ViewContainer container = ViewContainer.getInstance();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,14 +43,14 @@ public class CreateAlbum extends ActionBarActivity {
 					ad.setMessage("Did not specify a name for album.");
 					ad.show();
 				}
-				if(MainActivity.container.isAlbumExist(albumName)) {
+				if(container.isAlbumExist(albumName)) {
 					ad.setMessage("Album name already exists.");
 					ad.show();
 				}
 				else {
-					MainActivity.container.createAlbum(albumName);
+					container.createAlbum(albumName);
 					MainActivity.albumChange = true;
-					MainActivity.container.saveUser();
+					container.saveUser();
 					finish();
 				}
 			}

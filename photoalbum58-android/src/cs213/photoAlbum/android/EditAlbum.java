@@ -1,5 +1,6 @@
 package cs213.photoAlbum.android;
 
+import cs213.photoAlbum.simpleview.ViewContainer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ public class EditAlbum extends ActionBarActivity {
 	private Button apply;
 	private Button cancel;
 	private EditText tf;
+	private ViewContainer container = ViewContainer.getInstance();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,14 +48,14 @@ public class EditAlbum extends ActionBarActivity {
 					ad.setMessage("New album name must be different than the old album name.");
 					ad.show();
 				}
-				else if(MainActivity.container.isAlbumExist(newAlbumName)) {
+				else if(container.isAlbumExist(newAlbumName)) {
 					ad.setMessage("Album name already exists.");
 					ad.show();
 				}
 				else {
-					MainActivity.container.editAlbum(newAlbumName, getIntent().getExtras().getString("Old_Album"));
+					container.editAlbum(newAlbumName, getIntent().getExtras().getString("Old_Album"));
 					MainActivity.albumChange = true;
-					MainActivity.container.saveUser();
+					container.saveUser();
 					finish();
 				}
 			}
