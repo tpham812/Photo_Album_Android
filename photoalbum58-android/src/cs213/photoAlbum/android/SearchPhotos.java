@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.SortedSet;
 
 import cs213.photoAlbum.model.IPhoto;
+import cs213.photoAlbum.simpleview.ViewContainer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ public class SearchPhotos extends ActionBarActivity {
 	private Button search;
 	private Button cancel;
 	private AlertDialog ad;
+	private ViewContainer container = ViewContainer.getInstance();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class SearchPhotos extends ActionBarActivity {
 				List<String> tagType = new ArrayList<String>();
 				List<String> tagValue = new ArrayList<String>();
 				getTags(tagType, tagValue);
-				SortedSet<IPhoto> photos = MainActivity.container.getPhotosByTag(tagType, tagValue);
+				SortedSet<IPhoto> photos = container.getPhotosByTag(tagType, tagValue);
 				if(photos.isEmpty()) {
 					ad.setTitle("No Result");
 					ad.setMessage("No photos match your search.");

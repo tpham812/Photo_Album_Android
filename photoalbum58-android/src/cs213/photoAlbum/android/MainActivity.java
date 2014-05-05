@@ -33,8 +33,9 @@ public class MainActivity extends ActionBarActivity {
 	private Button search;
 	private Button create;
 	private ListView list;
+	private ViewContainer container;
 	public static boolean albumChange = false;
-	public static ViewContainer container;
+	
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		
