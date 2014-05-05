@@ -11,5 +11,6 @@
     <string name="title_photo_detail">Photo Detail</string>
     <string name="title_activity_search_photos">SearchPhotos</string>
     <string name="title_activity_add_photo">AddPhoto</string>
+    <string name="title_activity_view_photos">ViewPhotos</string>
 
 </resources>
