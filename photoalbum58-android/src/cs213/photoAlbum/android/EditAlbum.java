@@ -41,10 +41,10 @@ public class EditAlbum extends ActionBarActivity {
 				String newAlbumName = tf.getText().toString().trim();
 				String oldAlbumName = getIntent().getExtras().getString("Old_Album");
 				if(newAlbumName.equals("")) {
-					ad.setMessage("Did not specify  a name for album.");
+					ad.setMessage("Did not specify a name for album.");
 					ad.show();
 				}
-				if(newAlbumName.equals(oldAlbumName)) {
+				else if(newAlbumName.equals(oldAlbumName)) {
 					ad.setMessage("New album name must be different than the old album name.");
 					ad.show();
 				}
