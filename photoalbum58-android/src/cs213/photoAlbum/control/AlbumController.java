@@ -13,7 +13,7 @@ import cs213.photoAlbum.model.IBackend;
 import cs213.photoAlbum.model.IPhoto;
 import cs213.photoAlbum.model.IUser;
 import cs213.photoAlbum.model.Photo;
-import cs213.photoAlbum.util.CalendarUtils;
+import cs213.photoAlbum.util.Utils;
 
 /**
  * The Class AlbumController.
@@ -129,7 +129,7 @@ public class AlbumController implements IAlbumController {
 			photo.setCaption(caption);
 			
 			File file = backend.getFile(fileName);			
-			photo.setDateTime(CalendarUtils.toCalendar(file.lastModified()));
+			photo.setDateTime(Utils.toCalendar(file.lastModified()));
 			
 			user.getPhotos().put(fileName, photo);
 		}

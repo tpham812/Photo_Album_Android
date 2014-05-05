@@ -16,7 +16,7 @@ import cs213.photoAlbum.control.UserController;
 import cs213.photoAlbum.model.IAlbum;
 import cs213.photoAlbum.model.IPhoto;
 import cs213.photoAlbum.model.IUser;
-import cs213.photoAlbum.util.CalendarUtils;
+import cs213.photoAlbum.util.Utils;
 
 
 /**
