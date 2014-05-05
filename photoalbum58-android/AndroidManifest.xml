@@ -50,6 +50,10 @@
             android:name="cs213.photoAlbum.android.SearchPhotos"
             android:label="@string/title_activity_search_photos" >
         </activity>
+        <activity
+            android:name="cs213.photoAlbum.android.AddPhoto"
+            android:label="@string/title_activity_add_photo" >
+        </activity>
     </application>
 
 </manifest>
