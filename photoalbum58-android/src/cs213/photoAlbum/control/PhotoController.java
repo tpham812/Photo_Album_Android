@@ -11,7 +11,7 @@ import cs213.photoAlbum.model.Backend;
 import cs213.photoAlbum.model.IPhoto;
 import cs213.photoAlbum.model.IUser;
 import cs213.photoAlbum.model.Photo;
-import cs213.photoAlbum.util.CalendarUtils;
+import cs213.photoAlbum.util.Utils;
 
 /**
  * Controller interface for {@link Photo} management, such as adding/deleting tags, get photos by date range/tag.

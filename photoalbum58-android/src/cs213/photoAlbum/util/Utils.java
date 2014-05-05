@@ -5,13 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Utility class to process Calendar.
  * @author dheeptha
  */
-public class CalendarUtils {
+public class Utils {
 
 	/** The Constant DATE_FMT. */
 	private static final String DATE_FMT = "MM/dd/yyyy-HH:mm:ss";
@@ -58,5 +60,21 @@ public class CalendarUtils {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FMT);
 		return formatter.format(cal.getTime());
+	}
+
+	public static Bitmap resize(Bitmap image, int newHeight, int newWidth) {
+	
+		int width = image.getWidth();
+		int height = image.getHeight();
+		float scaleWidth = ((float) newWidth) / width;
+		float scaleHeight = ((float) newHeight) / height;
+		// create a matrix for the manipulation
+		Matrix matrix = new Matrix();
+		// resize the bit map
+		matrix.postScale(scaleWidth, scaleHeight);
+		// recreate the new Bitmap
+		Bitmap resizedBitmap = Bitmap.createBitmap(image, 0, 0, width, height,
+				matrix, false);
+		return resizedBitmap;
 	}
 }
