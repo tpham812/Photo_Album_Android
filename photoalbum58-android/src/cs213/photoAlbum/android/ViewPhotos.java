@@ -2,9 +2,12 @@ package cs213.photoAlbum.android;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.Iterator;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,14 +23,18 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import cs213.photoAlbum.model.IAlbum;
 import cs213.photoAlbum.model.IPhoto;
 import cs213.photoAlbum.simpleview.ViewContainer;
 import cs213.photoAlbum.util.Utils;
 
+
 public class ViewPhotos extends Activity {
 	
 	private ViewContainer viewContainer;
-
+	private AlertDialog.Builder ab;
+	private AlertDialog ad;
+	
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		setContentView(R.layout.activity_view_photos);
@@ -38,7 +45,9 @@ public class ViewPhotos extends Activity {
 		} else {
 			setTitle("Search results");
 		}
-		
+		populatePhotos();
+	}
+	public void populatePhotos() {
 		Collection<IPhoto> photos = viewContainer.getPhotos();
 		TableLayout tableLayout = (TableLayout) findViewById(R.id.ViewPhotosLayout);
 
@@ -143,6 +152,7 @@ public class ViewPhotos extends Activity {
 		switch (item.getItemId()) {
 		case 0:
 			move(item.getGroupId());
+			
 			break;
 		case 1:
 			delete(item.getGroupId());
@@ -161,7 +171,40 @@ public class ViewPhotos extends Activity {
 		startActivity(i);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void move(int groupId) {
-
+		
+		final String[] albumList;
+		final int id = groupId;
+		final String albumToMoveFrom = getIntent().getExtras().getString("Album");
+		albumList = getAlbumList(viewContainer.listAlbums(), albumToMoveFrom);
+		ab = new AlertDialog.Builder(this);
+		ab.setTitle("Choose album to move to.");
+		ab.setSingleChoiceItems(albumList, -1, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				IPhoto photo = viewContainer.getPhotos().get(id);
+				viewContainer.movePhoto(photo.getName(), albumToMoveFrom, albumList[which]);
+				viewContainer.saveUser();
+				Intent i = new Intent(ViewPhotos.this, ViewPhotos.class);
+				startActivity(i);
+			}
+		});
+		ad = ab.create();
+		ad.show();
+	}
+	
+	public String[] getAlbumList(Collection<IAlbum> albums, String albumToMoveFrom) {
+		
+		String[] albumList = new String[albums.size() - 1];
+		Iterator<IAlbum> iterator = albums.iterator();
+		int i = 0;
+		IAlbum al;
+		while(iterator.hasNext()) {
+			if(!(al = iterator.next()).getAlbumName().equals(albumToMoveFrom)) {
+				albumList[i] = al.getAlbumName();
+				i++;
+			}
+		}
+		return albumList;
 	}
 }

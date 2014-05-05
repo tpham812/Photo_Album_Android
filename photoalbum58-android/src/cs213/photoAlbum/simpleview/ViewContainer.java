@@ -1,4 +1,4 @@
-package cs213.photoAlbum.simpleview;
+ package cs213.photoAlbum.simpleview;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -217,6 +217,11 @@ public class ViewContainer {
 	 */
 	public IAlbum getAlbum() {
 		return album;
+	}
+	
+	public void movePhoto(String fileName, String oldAlbumName, String newAlbumName) {
+		
+		albumController.movePhoto(fileName, oldAlbumName, newAlbumName, user);
 	}
 
 	/**

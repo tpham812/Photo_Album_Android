@@ -1,6 +1,7 @@
 package cs213.photoAlbum.control;
 
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -122,26 +123,17 @@ public class PhotoController implements IPhotoController {
 	public SortedSet<IPhoto> getPhotosByTag(List<String> tagNames, List<String> tagValues, IUser user) {
 
 		SortedSet<IPhoto> result = new TreeSet<IPhoto>(new PhotoComparator());
-
-		boolean m = false;
-
+		
 		for (IPhoto p : user.getPhotos().values()) {
-			m = true;
-
 			for (int i = 0; i < tagNames.size(); i++) {
-				String tagName = tagNames.get(0);
-				String tagValue = tagValues.get(0);
-
-				if (!matches(p, tagName, tagValue)) {
-					m = false;
+				String tagName = tagNames.get(i);
+				String tagValue = tagValues.get(i);
+				if (matches(p, tagName.toLowerCase().trim(), tagValue.trim())) {
+					result.add(p);
 					break;
 				}
 			}
-			if (m) {
-				result.add(p);
-			}
 		}
-
 		return result;
 	}
 
@@ -157,14 +149,22 @@ public class PhotoController implements IPhotoController {
 
 		if (tagName.isEmpty()) {
 			for (SortedSet<String> vals : p.getTags().values()) {
-				if (vals.contains(tagValue)) {
-					return true;
+				Iterator<String> iterator = vals.iterator();
+				while(iterator.hasNext()) {
+					String tag = iterator.next();
+					if(tag.trim().startsWith(tagValue) || tag.trim().equals(tagValue)) 
+						return true;
 				}
 			}
 		} else {
 			SortedSet<String> s = p.getTags().get(tagName);
 			if (s != null) {
-				return s.contains(tagValue);
+				Iterator<String> iterator = s.iterator();
+				while(iterator.hasNext()) {
+					String tag = iterator.next();
+					if(tag.trim().startsWith(tagValue) || tag.trim().equals(tagValue)) 
+						return true;
+				}
 			}
 		}
 		return false;
