@@ -106,20 +106,20 @@ public class ViewPhotos extends Activity {
 	public boolean onContextItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case 0:
-			move(item.getItemId());
+			move(item.getGroupId());
 			break;
 		case 1:
-			delete(item.getItemId());
+			delete(item.getGroupId());
 			break;
 		}
 		return true;
 	}
 
-	private void delete(int itemId) {
+	private void delete(int groupId) {
 
 	}
 
-	public void move(int itemId) {
+	public void move(int groupId) {
 
 	}
 
