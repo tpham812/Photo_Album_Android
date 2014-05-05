@@ -27,24 +27,24 @@ import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
-	
-	
+
 	private ArrayAdapter<String> adapter;
 	private Button search;
 	private Button create;
 	private ListView list;
 	private ViewContainer container;
 	public static boolean albumChange = false;
-	
-	
+
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		container = ViewContainer.getInstance();
-		if(container == null) {
-			ViewContainer.init(getApplicationContext().getFilesDir().getAbsolutePath());
+		if (container == null) {
+			ViewContainer.init(getApplicationContext().getFilesDir()
+					.getAbsolutePath());
 			container = ViewContainer.getInstance();
 		}
-		
+		container.setAlbum(null);
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -69,74 +69,71 @@ public class MainActivity extends ActionBarActivity {
 		});
 		populateList();
 	}
-	
+
 	public void populateList() {
-		
+
 		Collection<IAlbum> albums = container.listAlbums();
 		List<String> albumList = new ArrayList<String>();
 		toArrayList(albums, albumList);
 		list = (ListView) findViewById(R.id.listView1);
 		adapter = new ArrayAdapter<String>(this, R.layout.album_list, albumList);
-		list.setAdapter(adapter); 
+		list.setAdapter(adapter);
 		list.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
 				Intent i = new Intent(MainActivity.this, ViewPhotos.class);
 				Object o = list.getItemAtPosition(position);
-				i.putExtra("Album", (String)o);
-				container.setAlbum(container.getAlbum((String)o));
+				i.putExtra("Album", (String) o);
+				container.setAlbum(container.getAlbum((String) o));
 				startActivity(i);
-			}	
+			}
 		});
 		registerForContextMenu(list);
 	}
-	
+
 	public void toArrayList(Collection<IAlbum> albums, List<String> albumList) {
 		Iterator<IAlbum> iterator = albums.iterator();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			albumList.add(iterator.next().getAlbumName());
 		}
 	}
-	
+
 	public void onRestart() {
 		super.onRestart();
-		if(albumChange) {
+		if (albumChange) {
 			populateList();
 			albumChange = false;
 		}
 	}
-	
+
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-		menu.add("Add Photo");
 		menu.add("Edit");
 		menu.add("Delete");
-		
+
 	}
-	
+
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
 		super.onContextItemSelected(item);
-		if("Edit".equals(item.getTitle())) {
+		if ("Edit".equals(item.getTitle())) {
 			Intent i = new Intent(this, EditAlbum.class);
-			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
+			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item
+					.getMenuInfo();
 			Object o = list.getItemAtPosition(adapterMenuInfo.position);
-			i.putExtra("Old_Album", (String)o);
+			i.putExtra("Old_Album", (String) o);
 			startActivity(i);
-		} if("Add Photo".equals(item.getTitle())) {
-			Intent i = new Intent(this, AddPhoto.class);
-			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
+		} else {
+			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item
+					.getMenuInfo();
 			Object o = list.getItemAtPosition(adapterMenuInfo.position);
-			i.putExtra("Album", (String)o);
-			startActivity(i);
-		}else {
-			AdapterContextMenuInfo adapterMenuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
-			Object o = list.getItemAtPosition(adapterMenuInfo.position);
-			container.deleteAlbum((String)o);
+			container.deleteAlbum((String) o);
 			container.saveUser();
 			populateList();
-		 }
+		}
 		return true;
 	}
 
@@ -167,6 +164,7 @@ public class MainActivity extends ActionBarActivity {
 
 		public PlaceholderFragment() {
 		}
+
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
