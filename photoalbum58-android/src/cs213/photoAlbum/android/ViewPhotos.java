@@ -176,7 +176,7 @@ public class ViewPhotos extends Activity {
 		
 		final String[] albumList;
 		final int id = groupId;
-		final String albumToMoveFrom = getIntent().getExtras().getString("Album");
+		final String albumToMoveFrom = viewContainer.getAlbum().getAlbumName();
 		albumList = getAlbumList(viewContainer.listAlbums(), albumToMoveFrom);
 		ab = new AlertDialog.Builder(this);
 		ab.setTitle("Choose a destination for photo.");
