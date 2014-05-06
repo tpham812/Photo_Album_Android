@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
 
+
 /**
  * Utility class to process Calendar.
  * @author dheeptha
@@ -62,6 +63,14 @@ public class Utils {
 		return formatter.format(cal.getTime());
 	}
 
+	/**
+	 * Resize.
+	 *
+	 * @param image the image
+	 * @param newHeight the new height
+	 * @param newWidth the new width
+	 * @return the bitmap
+	 */
 	public static Bitmap resize(Bitmap image, int newHeight, int newWidth) {
 	
 		int width = image.getWidth();

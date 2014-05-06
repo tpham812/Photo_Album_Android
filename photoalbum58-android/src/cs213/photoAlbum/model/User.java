@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
+
 /**
  * Represents the User, contains a unique ID, their full name, and the
  * album(s) of the user.
@@ -49,6 +50,12 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#editAlbum(java.lang.String, java.lang.String)
 	 */
+	/**
+	 * Edits the album.
+	 *
+	 * @param newAlbumName the new album name
+	 * @param oldAlbumName the old album name
+	 */
 	@Override
 	public void editAlbum(String newAlbumName, String oldAlbumName) {
 		
@@ -61,6 +68,11 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#addAlbum(cs213.photoAlbum.model.Album)
 	 */
+	/**
+	 * Adds the album.
+	 *
+	 * @param album the album
+	 */
 	@Override
 	public void addAlbum(Album album) {		
 		
@@ -70,6 +82,12 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#containsAlbum(java.lang.String)
 	 */
+	/**
+	 * Contains album.
+	 *
+	 * @param albumName the album name
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean containsAlbum(String albumName) {
 		return albumList.containsKey(albumName);
@@ -78,6 +96,12 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#getAlbum(java.lang.String)
 	 */
+	/**
+	 * Gets the album.
+	 *
+	 * @param albumName the album name
+	 * @return the album
+	 */
 	@Override
 	public IAlbum getAlbum(String albumName) {
 		return albumList.get(albumName);
@@ -85,6 +109,12 @@ public class User implements Serializable, IUser {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#addPhoto(cs213.photoAlbum.model.Photo, cs213.photoAlbum.model.IAlbum)
+	 */
+	/**
+	 * Adds the photo.
+	 *
+	 * @param photo the photo
+	 * @param album the album
 	 */
 	@Override
 	public void addPhoto(Photo photo, IAlbum album) {
@@ -95,6 +125,12 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#deleteAlbum(java.lang.String)
 	 */
+	/**
+	 * Delete album.
+	 *
+	 * @param albumName the album name
+	 * @return the i album
+	 */
 	@Override
 	public IAlbum deleteAlbum(String albumName) {				
 		return albumList.remove(albumName);
@@ -102,6 +138,12 @@ public class User implements Serializable, IUser {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#rename(cs213.photoAlbum.model.IAlbum)
+	 */
+	/**
+	 * Rename.
+	 *
+	 * @param album the album
+	 * @return the string
 	 */
 	@Override
 	public String rename(IAlbum album) {
@@ -112,6 +154,11 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return id;
@@ -119,6 +166,11 @@ public class User implements Serializable, IUser {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#setUserID(java.lang.String)
+	 */
+	/**
+	 * Sets the user id.
+	 *
+	 * @param id the new user id
 	 */
 	@Override
 	public void setUserID(String id) {
@@ -128,6 +180,11 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#setUserFullName(java.lang.String)
 	 */
+	/**
+	 * Sets the user full name.
+	 *
+	 * @param fname the new user full name
+	 */
 	@Override
 	public void setUserFullName(String fname) {
 		this.fname = fname;
@@ -135,6 +192,11 @@ public class User implements Serializable, IUser {
 	
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#getUserID()
+	 */
+	/**
+	 * Gets the user id.
+	 *
+	 * @return the user id
 	 */
 	@Override
 	public String getUserID() {
@@ -144,6 +206,11 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#getUserFullName()
 	 */
+	/**
+	 * Gets the user full name.
+	 *
+	 * @return the user full name
+	 */
 	@Override
 	public String getUserFullName() {
 		return fname;
@@ -151,6 +218,11 @@ public class User implements Serializable, IUser {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#getAlbums()
+	 */
+	/**
+	 * Gets the albums.
+	 *
+	 * @return the albums
 	 */
 	@Override
 	public Collection<IAlbum> getAlbums() {		
@@ -160,6 +232,11 @@ public class User implements Serializable, IUser {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#getPhotos()
 	 */
+	/**
+	 * Gets the photos.
+	 *
+	 * @return the photos
+	 */
 	@Override
 	public Map<String, IPhoto> getPhotos() {
 		return photos;
@@ -167,6 +244,11 @@ public class User implements Serializable, IUser {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IUser#setPhotos(java.util.Map)
+	 */
+	/**
+	 * Sets the photos.
+	 *
+	 * @param photos the photos
 	 */
 	@Override
 	public void setPhotos(Map<String, IPhoto> photos) {

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.SortedSet;
 
 
+
 /**
  * Photo owned by a {@link User} and part of multiple {@link Album}s.
  * @author dheeptha
@@ -39,6 +40,11 @@ public class Photo implements Serializable, IPhoto {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IPhoto#getName()
 	 */
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	@Override
 	public String getName() {
 		return name;
@@ -46,6 +52,11 @@ public class Photo implements Serializable, IPhoto {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IPhoto#setName(java.lang.String)
+	 */
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
 	 */
 	@Override
 	public void setName(String name) {
@@ -55,6 +66,11 @@ public class Photo implements Serializable, IPhoto {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IPhoto#getCaption()
 	 */
+	/**
+	 * Gets the caption.
+	 *
+	 * @return the caption
+	 */
 	@Override
 	public String getCaption() {
 		return caption;
@@ -62,6 +78,11 @@ public class Photo implements Serializable, IPhoto {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IPhoto#setCaption(java.lang.String)
+	 */
+	/**
+	 * Sets the caption.
+	 *
+	 * @param caption the new caption
 	 */
 	@Override
 	public void setCaption(String caption) {
@@ -71,6 +92,11 @@ public class Photo implements Serializable, IPhoto {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IPhoto#getDateTime()
 	 */
+	/**
+	 * Gets the date time.
+	 *
+	 * @return the date time
+	 */
 	@Override
 	public Calendar getDateTime() {
 		return dateTime;
@@ -78,6 +104,11 @@ public class Photo implements Serializable, IPhoto {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IPhoto#setDateTime(java.util.Calendar)
+	 */
+	/**
+	 * Sets the date time.
+	 *
+	 * @param dateTime the new date time
 	 */
 	@Override
 	public void setDateTime(Calendar dateTime) {
@@ -88,6 +119,11 @@ public class Photo implements Serializable, IPhoto {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IPhoto#getTags()
 	 */
+	/**
+	 * Gets the tags.
+	 *
+	 * @return the tags
+	 */
 	@Override
 	public Map<String, SortedSet<String>> getTags() {
 		return tags;
@@ -95,6 +131,11 @@ public class Photo implements Serializable, IPhoto {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IPhoto#setTags(java.util.Map)
+	 */
+	/**
+	 * Sets the tags.
+	 *
+	 * @param tags the tags
 	 */
 	@Override
 	public void setTags(Map<String, SortedSet<String>> tags) {

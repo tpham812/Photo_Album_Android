@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 /**
  * IBackend is the interface to perform backend functions such as storage/retrieval of files and saving the user data.
  * @author dheeptha
@@ -17,14 +18,27 @@ import java.util.List;
  */
 public class Backend implements IBackend {
 	
+	/** The data folder. */
 	private String dataFolder;
 	
+	/**
+	 * Instantiates a new backend.
+	 *
+	 * @param dataFolder the data folder
+	 */
 	public Backend(String dataFolder){
 		this.dataFolder = dataFolder;
 	}
 	
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IBackend#retrievePhotoFile(cs213.photoAlbum.model.IPhoto, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Retrieve photo file.
+	 *
+	 * @param photo the photo
+	 * @param user the user
+	 * @return the file
 	 */
 	@Override
 	public File retrievePhotoFile(IPhoto photo, IUser user) {
@@ -54,6 +68,12 @@ public class Backend implements IBackend {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IBackend#readUser(java.lang.String)
+	 */
+	/**
+	 * Read user.
+	 *
+	 * @param userId the user id
+	 * @return the user
 	 */
 	@Override
 	public User readUser(String userId) {
@@ -118,6 +138,12 @@ public class Backend implements IBackend {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IBackend#writeUser(cs213.photoAlbum.model.IUser)
 	 */
+	/**
+	 * Write user.
+	 *
+	 * @param u the u
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean  writeUser(IUser u) {
 
@@ -159,6 +185,12 @@ public class Backend implements IBackend {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IBackend#deleteUser(java.lang.String)
 	 */
+	/**
+	 * Delete user.
+	 *
+	 * @param userId the user id
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean deleteUser(String userId) {
 
@@ -167,6 +199,12 @@ public class Backend implements IBackend {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IBackend#getUser(java.util.List)
+	 */
+	/**
+	 * Gets the user.
+	 *
+	 * @param userIds the user ids
+	 * @return the user
 	 */
 	@Override
 	public List<User> getUser(List<String> userIds) {

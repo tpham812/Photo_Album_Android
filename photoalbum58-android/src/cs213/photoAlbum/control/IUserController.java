@@ -7,6 +7,7 @@ import cs213.photoAlbum.model.User;
 
 
 
+
 /**
  * Controller interface for {@link User} functions such as login, logout, add/delete/list users.
  *

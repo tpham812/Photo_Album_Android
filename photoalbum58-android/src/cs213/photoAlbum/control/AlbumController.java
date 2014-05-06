@@ -15,6 +15,7 @@ import cs213.photoAlbum.model.IUser;
 import cs213.photoAlbum.model.Photo;
 import cs213.photoAlbum.util.Utils;
 
+
 /**
  * The Class AlbumController.
  * @author dheeptha
@@ -26,6 +27,8 @@ public class AlbumController implements IAlbumController {
 	
 	/**
 	 * Instantiates a new album controller.
+	 *
+	 * @param dataFolder the data folder
 	 */
 	public AlbumController(String dataFolder) {
 		this.backend = new Backend(dataFolder);
@@ -34,6 +37,12 @@ public class AlbumController implements IAlbumController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#listAlbums(cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * List albums.
+	 *
+	 * @param user the user
+	 * @return the sorted set
 	 */
 	@Override
 	public SortedSet<IAlbum> listAlbums(IUser user) {
@@ -46,6 +55,13 @@ public class AlbumController implements IAlbumController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#createAlbum(java.lang.String, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Creates the album.
+	 *
+	 * @param albumName the album name
+	 * @param user the user
+	 * @return true, if successful
 	 */
 	@Override
 	public boolean createAlbum(String albumName, IUser user) {
@@ -61,6 +77,13 @@ public class AlbumController implements IAlbumController {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#editAlbum(java.lang.String, java.lang.String, cs213.photoAlbum.model.IUser)
 	 */
+	/**
+	 * Edits the album.
+	 *
+	 * @param newAlbumName the new album name
+	 * @param oldAlbumName the old album name
+	 * @param user the user
+	 */
 	@Override
 	public void editAlbum(String newAlbumName, String oldAlbumName, IUser user) {
 		
@@ -69,6 +92,13 @@ public class AlbumController implements IAlbumController {
 	
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#deleteAlbum(java.lang.String, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Delete album.
+	 *
+	 * @param albumName the album name
+	 * @param user the user
+	 * @return true, if successful
 	 */
 	@Override
 	public boolean deleteAlbum(String albumName, IUser user) {
@@ -88,6 +118,13 @@ public class AlbumController implements IAlbumController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#listPhotos(java.lang.String, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * List photos.
+	 *
+	 * @param albumName the album name
+	 * @param user the user
+	 * @return the collection
 	 */
 	@Override
 	public Collection<IPhoto> listPhotos(String albumName, IUser user) {
@@ -114,6 +151,15 @@ public class AlbumController implements IAlbumController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#addPhoto(java.lang.String, java.lang.String, java.lang.String, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Adds the photo.
+	 *
+	 * @param fileName the file name
+	 * @param caption the caption
+	 * @param albumName the album name
+	 * @param user the user
+	 * @return the i photo
 	 */
 	@Override
 	public IPhoto addPhoto(String fileName, String caption, String albumName, IUser user) {
@@ -146,6 +192,15 @@ public class AlbumController implements IAlbumController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#movePhoto(java.lang.String, java.lang.String, java.lang.String, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Move photo.
+	 *
+	 * @param fileName the file name
+	 * @param oldAlbumName the old album name
+	 * @param newAlbumName the new album name
+	 * @param user the user
+	 * @return true, if successful
 	 */
 	@Override
 	public boolean movePhoto(String fileName, String oldAlbumName, String newAlbumName, IUser user) {
@@ -183,6 +238,14 @@ public class AlbumController implements IAlbumController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#removePhoto(java.lang.String, java.lang.String, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Removes the photo.
+	 *
+	 * @param fileName the file name
+	 * @param albumName the album name
+	 * @param user the user
+	 * @return true, if successful
 	 */
 	@Override
 	public boolean removePhoto(String fileName, String albumName, IUser user) {
@@ -224,6 +287,13 @@ public class AlbumController implements IAlbumController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IAlbumController#getAlbum(java.lang.String, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Gets the album.
+	 *
+	 * @param albumName the album name
+	 * @param user the user
+	 * @return the album
 	 */
 	@Override
 	public IAlbum getAlbum(String albumName, IUser user) {
