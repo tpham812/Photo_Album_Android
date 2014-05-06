@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 
+
 /**
  * Represents the IUser, containing a unique ID, their full name, and the
  * album(s) of the user.

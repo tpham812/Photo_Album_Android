@@ -26,15 +26,35 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+
+/**
+ * The Class MainActivity.
+ */
 public class MainActivity extends ActionBarActivity {
 
+	/** The adapter. */
 	private ArrayAdapter<String> adapter;
+	
+	/** The search. */
 	private Button search;
+	
+	/** The create. */
 	private Button create;
+	
+	/** The list. */
 	private ListView list;
+	
+	/** The container. */
 	private ViewContainer container;
+	
+	/** The album change. */
 	public static boolean albumChange = false;
 
+	/**
+	 * On create.
+	 *
+	 * @param savedInstanceState the saved instance state
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 
 		container = ViewContainer.getInstance();
@@ -70,6 +90,9 @@ public class MainActivity extends ActionBarActivity {
 		populateList();
 	}
 
+	/**
+	 * Populate list.
+	 */
 	public void populateList() {
 
 		Collection<IAlbum> albums = container.listAlbums();
@@ -91,6 +114,12 @@ public class MainActivity extends ActionBarActivity {
 		registerForContextMenu(list);
 	}
 
+	/**
+	 * To array list.
+	 *
+	 * @param albums the albums
+	 * @param albumList the album list
+	 */
 	public void toArrayList(Collection<IAlbum> albums, List<String> albumList) {
 		Iterator<IAlbum> iterator = albums.iterator();
 		while (iterator.hasNext()) {
@@ -98,6 +127,9 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
+	/**
+	 * On restart.
+	 */
 	public void onRestart() {
 		super.onRestart();
 		if (albumChange) {
@@ -106,6 +138,13 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
+	/**
+	 * On create context menu.
+	 *
+	 * @param menu the menu
+	 * @param v the v
+	 * @param menuInfo the menu info
+	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -114,6 +153,12 @@ public class MainActivity extends ActionBarActivity {
 		menu.add("Delete");
 	}
 
+	/**
+	 * On context item selected.
+	 *
+	 * @param item the item
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
@@ -136,6 +181,12 @@ public class MainActivity extends ActionBarActivity {
 		return true;
 	}
 
+	/**
+	 * On create options menu.
+	 *
+	 * @param menu the menu
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -144,6 +195,12 @@ public class MainActivity extends ActionBarActivity {
 		return true;
 	}
 
+	/**
+	 * On options item selected.
+	 *
+	 * @param item the item
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -161,9 +218,20 @@ public class MainActivity extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		/**
+		 * Instantiates a new placeholder fragment.
+		 */
 		public PlaceholderFragment() {
 		}
 
+		/**
+		 * On create view.
+		 *
+		 * @param inflater the inflater
+		 * @param container the container
+		 * @param savedInstanceState the saved instance state
+		 * @return the view
+		 */
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {

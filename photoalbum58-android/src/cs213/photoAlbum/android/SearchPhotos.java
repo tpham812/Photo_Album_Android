@@ -23,12 +23,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.os.Build;
 
+
+/**
+ * The Class SearchPhotos.
+ */
 public class SearchPhotos extends ActionBarActivity {
 
+	/** The search. */
 	private Button search;
+	
+	/** The cancel. */
 	private Button cancel;
+	
+	/** The ad. */
 	private AlertDialog ad;
+	
+	/** The container. */
 	private ViewContainer container = ViewContainer.getInstance();
+	
+	/**
+	 * On create.
+	 *
+	 * @param savedInstanceState the saved instance state
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -108,6 +125,9 @@ public class SearchPhotos extends ActionBarActivity {
 		});
 	}
 	
+	/**
+	 * On restart.
+	 */
 	public void onRestart() {
 		super.onRestart();
 		((EditText) findViewById(R.id.tf1_1)).setText("");
@@ -123,6 +143,9 @@ public class SearchPhotos extends ActionBarActivity {
 		((EditText) findViewById(R.id.tf1_1)).requestFocus();
 	}
 	
+	/**
+	 * Builds the alert dialog.
+	 */
 	@SuppressWarnings("deprecation")
 	public void buildAlertDialog() {
 		ad = new AlertDialog.Builder(this).create();
@@ -134,6 +157,12 @@ public class SearchPhotos extends ActionBarActivity {
 		});
 	}
 
+	/**
+	 * On create options menu.
+	 *
+	 * @param menu the menu
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -142,6 +171,12 @@ public class SearchPhotos extends ActionBarActivity {
 		return true;
 	}
 
+	/**
+	 * On options item selected.
+	 *
+	 * @param item the item
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -159,9 +194,20 @@ public class SearchPhotos extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		/**
+		 * Instantiates a new placeholder fragment.
+		 */
 		public PlaceholderFragment() {
 		}
 
+		/**
+		 * On create view.
+		 *
+		 * @param inflater the inflater
+		 * @param container the container
+		 * @param savedInstanceState the saved instance state
+		 * @return the view
+		 */
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {

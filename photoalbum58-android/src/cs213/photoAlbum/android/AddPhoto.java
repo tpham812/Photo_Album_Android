@@ -20,20 +20,35 @@ import android.widget.TextView;
 import android.os.Build;
 import android.provider.MediaStore.Images.ImageColumns;
 
+
+/**
+ * The Class AddPhoto.
+ */
 public class AddPhoto extends ActionBarActivity {
 
+	/** The file browser. */
 	private Button fileBrowser;
 
+	/** The cancel btn. */
 	private Button cancelBtn;
 
+	/** The save btn. */
 	private Button saveBtn;
 
+	/** The pathname val. */
 	private TextView pathnameVal;
 
+	/** The album val. */
 	private TextView albumVal;
 
+	/** The caption val. */
 	private TextView captionVal;
 
+	/**
+	 * On create.
+	 *
+	 * @param savedInstanceState the saved instance state
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,6 +107,13 @@ public class AddPhoto extends ActionBarActivity {
 
 	}
 
+	/**
+	 * On activity result.
+	 *
+	 * @param requestCode the request code
+	 * @param resultcode the resultcode
+	 * @param intent the intent
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultcode,
 			Intent intent) {
@@ -110,6 +132,12 @@ public class AddPhoto extends ActionBarActivity {
 		}
 	}
 
+	/**
+	 * On create options menu.
+	 *
+	 * @param menu the menu
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -118,6 +146,12 @@ public class AddPhoto extends ActionBarActivity {
 		return true;
 	}
 
+	/**
+	 * On options item selected.
+	 *
+	 * @param item the item
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -135,9 +169,20 @@ public class AddPhoto extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		/**
+		 * Instantiates a new placeholder fragment.
+		 */
 		public PlaceholderFragment() {
 		}
 
+		/**
+		 * On create view.
+		 *
+		 * @param inflater the inflater
+		 * @param container the container
+		 * @param savedInstanceState the saved instance state
+		 * @return the view
+		 */
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {

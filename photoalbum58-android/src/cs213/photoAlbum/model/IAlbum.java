@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Map;
 
 
+
 /**
  * Album of a {@link IUser} containing multiple {@link IPhoto}s.
  *

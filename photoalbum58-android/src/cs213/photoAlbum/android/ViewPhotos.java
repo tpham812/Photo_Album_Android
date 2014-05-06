@@ -29,12 +29,26 @@ import cs213.photoAlbum.simpleview.ViewContainer;
 import cs213.photoAlbum.util.Utils;
 
 
+
+/**
+ * The Class ViewPhotos.
+ */
 public class ViewPhotos extends Activity {
 	
+	/** The view container. */
 	private ViewContainer viewContainer;
+	
+	/** The ab. */
 	private AlertDialog.Builder ab;
+	
+	/** The ad. */
 	private AlertDialog ad;
 	
+	/**
+	 * On create.
+	 *
+	 * @param bundle the bundle
+	 */
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		setContentView(R.layout.activity_view_photos);
@@ -47,6 +61,10 @@ public class ViewPhotos extends Activity {
 		}
 		populatePhotos();
 	}
+	
+	/**
+	 * Populate photos.
+	 */
 	public void populatePhotos() {
 		Collection<IPhoto> photos = viewContainer.getPhotos();
 		TableLayout tableLayout = (TableLayout) findViewById(R.id.ViewPhotosLayout);
@@ -147,6 +165,12 @@ public class ViewPhotos extends Activity {
 	 * This method is called when an item in a context menu is selected.
 	 */
 
+	/**
+	 * On context item selected.
+	 *
+	 * @param item the item
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -161,6 +185,11 @@ public class ViewPhotos extends Activity {
 		return true;
 	}
 
+	/**
+	 * Delete.
+	 *
+	 * @param groupId the group id
+	 */
 	private void delete(int groupId) {
 		
 		IPhoto photo = viewContainer.getPhotos().get(groupId);		
@@ -171,6 +200,11 @@ public class ViewPhotos extends Activity {
 		startActivity(i);
 	}
 
+	/**
+	 * Move.
+	 *
+	 * @param groupId the group id
+	 */
 	@SuppressWarnings("deprecation")
 	public void move(int groupId) {
 		
@@ -193,6 +227,13 @@ public class ViewPhotos extends Activity {
 		ad.show();
 	}
 	
+	/**
+	 * Gets the album list.
+	 *
+	 * @param albums the albums
+	 * @param albumToMoveFrom the album to move from
+	 * @return the album list
+	 */
 	public String[] getAlbumList(Collection<IAlbum> albums, String albumToMoveFrom) {
 		
 		String[] albumList = new String[albums.size() - 1];

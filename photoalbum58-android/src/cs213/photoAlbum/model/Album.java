@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
+
 /**
  * Album of a {@link User} containing multiple {@link Photo}s.
  *
@@ -37,6 +38,11 @@ public class Album implements Serializable, IAlbum {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IAlbum#recaptionPhoto()
 	 */
+	/**
+	 * Recaption photo.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String recaptionPhoto(){
 		return name; 
@@ -46,6 +52,11 @@ public class Album implements Serializable, IAlbum {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IAlbum#getPhotos()
 	 */
+	/**
+	 * Gets the photos.
+	 *
+	 * @return the photos
+	 */
 	@Override
 	public Collection<IPhoto> getPhotos(){
 		return photos.values(); 
@@ -53,6 +64,12 @@ public class Album implements Serializable, IAlbum {
 	
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IAlbum#getPhoto(java.lang.String)
+	 */
+	/**
+	 * Gets the photo.
+	 *
+	 * @param name the name
+	 * @return the photo
 	 */
 	@Override
 	public IPhoto getPhoto(String name) {
@@ -62,6 +79,11 @@ public class Album implements Serializable, IAlbum {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IAlbum#setAlbumName(java.lang.String)
 	 */
+	/**
+	 * Sets the album name.
+	 *
+	 * @param name the new album name
+	 */
 	@Override
 	public void setAlbumName(String name){
 		this.name=name;
@@ -70,6 +92,11 @@ public class Album implements Serializable, IAlbum {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IAlbum#getAlbumName()
 	 */
+	/**
+	 * Gets the album name.
+	 *
+	 * @return the album name
+	 */
 	@Override
 	public String getAlbumName(){
 		return name; 
@@ -77,6 +104,11 @@ public class Album implements Serializable, IAlbum {
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
+	 */
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
 	 */
 	@Override
 	public int hashCode() {
@@ -88,6 +120,12 @@ public class Album implements Serializable, IAlbum {
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -108,6 +146,11 @@ public class Album implements Serializable, IAlbum {
 	
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IAlbum#maxPhotoDate()
+	 */
+	/**
+	 * Max photo date.
+	 *
+	 * @return the calendar
 	 */
 	@Override
 	public Calendar maxPhotoDate(){
@@ -130,6 +173,11 @@ public class Album implements Serializable, IAlbum {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IAlbum#minPhotoDate()
 	 */
+	/**
+	 * Min photo date.
+	 *
+	 * @return the calendar
+	 */
 	@Override
 	public Calendar minPhotoDate(){
 		
@@ -148,6 +196,11 @@ public class Album implements Serializable, IAlbum {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.model.IAlbum#getPhotoMap()
+	 */
+	/**
+	 * Gets the photo map.
+	 *
+	 * @return the photo map
 	 */
 	@Override
 	public Map<String, IPhoto> getPhotoMap() {

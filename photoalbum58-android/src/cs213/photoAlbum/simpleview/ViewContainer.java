@@ -19,6 +19,7 @@ import cs213.photoAlbum.model.IUser;
 import cs213.photoAlbum.util.Utils;
 
 
+
 /**
  * The Class ViewContainer.
  * @author dheeptha
@@ -45,13 +46,17 @@ public class ViewContainer {
 	/** The photos. */
 	protected List<IPhoto> photos;
 	
+	/** The photo. */
 	protected IPhoto photo;
 	
 
+	/** The container. */
 	private static ViewContainer container;
 
 	/**
 	 * Instantiates a new view container.
+	 *
+	 * @param dataFolder the data folder
 	 */
 	public ViewContainer(String dataFolder) {
 
@@ -60,6 +65,11 @@ public class ViewContainer {
 		this.albumController = new AlbumController(dataFolder);
 	}
 	
+	/**
+	 * Inits the.
+	 *
+	 * @param dataFolder the data folder
+	 */
 	public static void init(String dataFolder) {
 		container = new ViewContainer(dataFolder);
 		
@@ -69,6 +79,11 @@ public class ViewContainer {
 		container.login("default");
 	}
 	
+	/**
+	 * Gets the single instance of ViewContainer.
+	 *
+	 * @return single instance of ViewContainer
+	 */
 	public static ViewContainer getInstance(){
 		return container;
 	}
@@ -219,6 +234,13 @@ public class ViewContainer {
 		return album;
 	}
 	
+	/**
+	 * Move photo.
+	 *
+	 * @param fileName the file name
+	 * @param oldAlbumName the old album name
+	 * @param newAlbumName the new album name
+	 */
 	public void movePhoto(String fileName, String oldAlbumName, String newAlbumName) {
 		
 		albumController.movePhoto(fileName, oldAlbumName, newAlbumName, user);
@@ -291,10 +313,20 @@ public class ViewContainer {
 	}
 	
 
+	/**
+	 * Gets the photo.
+	 *
+	 * @return the photo
+	 */
 	public IPhoto getPhoto() {
 		return photo;
 	}
 
+	/**
+	 * Sets the photo.
+	 *
+	 * @param photo the new photo
+	 */
 	public void setPhoto(IPhoto photo) {
 		this.photo = photo;
 	}

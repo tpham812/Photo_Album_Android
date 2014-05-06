@@ -25,18 +25,33 @@ import cs213.photoAlbum.model.IUser;
 import cs213.photoAlbum.simpleview.ViewContainer;
 import cs213.photoAlbum.util.Utils;
 
+
+/**
+ * The Class SlideshowFragment.
+ */
 public class SlideshowFragment extends Fragment {
 
+	/** The Constant CUR_PAGE. */
 	public static final String CUR_PAGE = "curPage";
 
+	/** The page num. */
 	private int pageNum;
 
+	/** The photo. */
 	private IPhoto photo;
 
+	/** The ctr. */
 	private ViewContainer ctr;
 
+	/** The per3. */
 	private TextView loc1, per1, per2, per3;
 
+	/**
+	 * Creates the.
+	 *
+	 * @param pageNumber the page number
+	 * @return the slideshow fragment
+	 */
 	public static SlideshowFragment create(int pageNumber) {
 		SlideshowFragment fragment = new SlideshowFragment();
 		Bundle args = new Bundle();
@@ -45,15 +60,31 @@ public class SlideshowFragment extends Fragment {
 		return fragment;
 	}
 
+	/**
+	 * Instantiates a new slideshow fragment.
+	 */
 	public SlideshowFragment() {
 	}
 
+	/**
+	 * On create.
+	 *
+	 * @param savedInstanceState the saved instance state
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		pageNum = getArguments().getInt(CUR_PAGE);
 	}
 
+	/**
+	 * On create view.
+	 *
+	 * @param inflater the inflater
+	 * @param container the container
+	 * @param savedInstanceState the saved instance state
+	 * @return the view
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			final ViewGroup container, Bundle savedInstanceState) {
@@ -157,6 +188,11 @@ public class SlideshowFragment extends Fragment {
 		return view;
 	}
 
+	/**
+	 * Gets the page number.
+	 *
+	 * @return the page number
+	 */
 	public int getPageNumber() {
 		return pageNum;
 	}

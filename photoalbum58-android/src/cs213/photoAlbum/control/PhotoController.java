@@ -14,6 +14,7 @@ import cs213.photoAlbum.model.IUser;
 import cs213.photoAlbum.model.Photo;
 import cs213.photoAlbum.util.Utils;
 
+
 /**
  * Controller interface for {@link Photo} management, such as adding/deleting tags, get photos by date range/tag.
  * @author dheeptha
@@ -26,6 +27,8 @@ public class PhotoController implements IPhotoController {
 
 	/**
 	 * Instantiates a new photo controller.
+	 *
+	 * @param dataFolder the data folder
 	 */
 	public PhotoController(String dataFolder) {
 		this.backend = new Backend(dataFolder);
@@ -34,6 +37,13 @@ public class PhotoController implements IPhotoController {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IPhotoController#containsPhoto(java.lang.String, cs213.photoAlbum.model.IUser)
 	 */
+	/**
+	 * Contains photo.
+	 *
+	 * @param fileName the file name
+	 * @param user the user
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean containsPhoto(String fileName, IUser user) {
 		return user.getPhotos().containsKey(fileName);
@@ -41,6 +51,15 @@ public class PhotoController implements IPhotoController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IPhotoController#addTag(java.lang.String, java.lang.String, java.lang.String, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Adds the tag.
+	 *
+	 * @param fileName the file name
+	 * @param tagType the tag type
+	 * @param tagValue the tag value
+	 * @param user the user
+	 * @return true, if successful
 	 */
 	@Override
 	public boolean addTag(String fileName, String tagType, String tagValue, IUser user) {
@@ -72,6 +91,15 @@ public class PhotoController implements IPhotoController {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IPhotoController#deleteTag(java.lang.String, java.lang.String, java.lang.String, cs213.photoAlbum.model.IUser)
 	 */
+	/**
+	 * Delete tag.
+	 *
+	 * @param fileName the file name
+	 * @param tagType the tag type
+	 * @param tagValue the tag value
+	 * @param user the user
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean deleteTag(String fileName, String tagType, String tagValue, IUser user) {
 
@@ -99,6 +127,14 @@ public class PhotoController implements IPhotoController {
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IPhotoController#getPhotosByDate(java.util.Calendar, java.util.Calendar, cs213.photoAlbum.model.IUser)
 	 */
+	/**
+	 * Gets the photos by date.
+	 *
+	 * @param start the start
+	 * @param end the end
+	 * @param user the user
+	 * @return the photos by date
+	 */
 	@Override
 	public SortedSet<IPhoto> getPhotosByDate(Calendar start, Calendar end, IUser user) {
 		
@@ -118,6 +154,14 @@ public class PhotoController implements IPhotoController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IPhotoController#getPhotosByTag(java.util.List, java.util.List, cs213.photoAlbum.model.IUser)
+	 */
+	/**
+	 * Gets the photos by tag.
+	 *
+	 * @param tagNames the tag names
+	 * @param tagValues the tag values
+	 * @param user the user
+	 * @return the photos by tag
 	 */
 	@Override
 	public SortedSet<IPhoto> getPhotosByTag(List<String> tagNames, List<String> tagValues, IUser user) {
@@ -178,6 +222,12 @@ public class PhotoController implements IPhotoController {
 
 	/* (non-Javadoc)
 	 * @see cs213.photoAlbum.control.IPhotoController#fileExists(java.lang.String)
+	 */
+	/**
+	 * File exists.
+	 *
+	 * @param fileName the file name
+	 * @return true, if successful
 	 */
 	@Override
 	public boolean fileExists(String fileName) {
